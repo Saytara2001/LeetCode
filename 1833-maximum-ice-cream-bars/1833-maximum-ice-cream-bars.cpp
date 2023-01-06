@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maxIceCream(vector<int>& costs, int coins) {
+        ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
         sort(costs.begin(), costs.end());
         int cnt = 0;
         for(auto cost:costs){
