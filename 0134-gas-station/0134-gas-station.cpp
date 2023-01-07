@@ -12,6 +12,7 @@ public:
                 st = i+1;
             }
         }
+        st %= n;
         total += sum;
         return total >= 0 ? st : -1;
     }
