@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> dfs(int node, int par, string& labels, vector<vector<int>>& adj, vector<int>& sub){
+    vector<int> dfs(int node,int par, string& labels, vector<vector<int>>& adj, vector<int>& sub){
         vector<int> nodeCounts(26);
         nodeCounts[labels[node]-'a'] = 1;
         
