@@ -27,7 +27,7 @@ public:
 
     int closestMeetingNode(vector<int>& edges, int node1, int node2) {
         int n = edges.size();
-        vector<int> dist1(n, numeric_limits<int>::max()), dist2(n, numeric_limits<int>::max());
+        vector<int> dist1(n, INT_MAX), dist2(n, INT_MAX);
 
         bfs(node1, edges, dist1);
         bfs(node2, edges, dist2);
