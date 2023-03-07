@@ -2,11 +2,9 @@ typedef long long ll;
 class Solution {
 public:
     bool valid(int &totalTrips, ll mid, vector<int>& time) {
-        ll trips = 0;
+        __int128 trips = 0;
         for(auto vv:time) {
             trips += mid / vv;
-            if(trips >= totalTrips)
-                return trips >= totalTrips;
         }
         return trips >= totalTrips;
     }
