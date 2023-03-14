@@ -11,25 +11,23 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root, long long& ans, int num) {
-         if(!root)
-             return;
+    long long ans = 0;
+    int sumNumbers(TreeNode* root, int num = 0) {
+        
+        if(!root)
+             return 0;
          if(!root->left and !root->right) {
              //this leaf node
             num = num *10 + root->val;
             ans += num;
-            return;
+            return num;
         }
         
         num = num *10 + root->val;
         
-        dfs(root->left , ans, num);
-        dfs(root->right, ans, num);
+        sumNumbers(root->left, num);
+        sumNumbers(root->right, num);
         
-    }
-    int sumNumbers(TreeNode* root, int num = 0) {
-        long long ans = 0;
-        dfs(root, ans, 0);
         return ans;
     }
 };
