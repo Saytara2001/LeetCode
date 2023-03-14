@@ -12,7 +12,8 @@
 class Solution {
 public:
     void dfs(TreeNode* root, long long& ans, int num) {
-        
+         if(!root)
+             return;
          if(!root->left and !root->right) {
              //this leaf node
             num = num *10 + root->val;
@@ -22,8 +23,8 @@ public:
         
         num = num *10 + root->val;
         
-        if(root->left) dfs(root->left , ans, num);
-        if(root->right) dfs(root->right, ans, num);
+        dfs(root->left , ans, num);
+        dfs(root->right, ans, num);
         
     }
     int sumNumbers(TreeNode* root, int num = 0) {
