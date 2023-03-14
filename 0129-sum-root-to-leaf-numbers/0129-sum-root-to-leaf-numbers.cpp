@@ -11,23 +11,14 @@
  */
 class Solution {
 public:
-    long long ans = 0;
     int sumNumbers(TreeNode* root, int num = 0) {
-        
         if(!root)
              return 0;
-         if(!root->left and !root->right) {
-             //this leaf node
-            num = num *10 + root->val;
-            ans += num;
+         if(!root->left and !root->right) { //this leaf node
+            num = num * 10 + root->val;
             return num;
         }
-        
         num = num *10 + root->val;
-        
-        sumNumbers(root->left, num);
-        sumNumbers(root->right, num);
-        
-        return ans;
+        return sumNumbers(root->left, num) + sumNumbers(root->right, num);
     }
 };
