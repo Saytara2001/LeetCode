@@ -22,9 +22,8 @@ public:
         return ret = max(take, leave);
     }
     int lengthOfLIS(vector<int>& nums) {
-        for(auto vv : nums) {
-            v.push_back(vv);
-        }
+        for(int i = 0; i < nums.size(); i++)
+            v.push_back(nums[i]);
         memset(dp, -1, sizeof(dp));
         
         return rec(0, 0);
