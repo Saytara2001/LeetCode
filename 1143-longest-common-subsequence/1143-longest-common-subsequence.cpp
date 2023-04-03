@@ -16,9 +16,8 @@ public:
 
         int leave1 = LCS(i + 1, j, s, t);
         int leave2 = LCS(i, j + 1, s, t);
-        int leave3 = LCS(i + 1, j + 1, s, t);
 
-        return ret = max({take, leave1, leave2, leave3});
+        return ret = max({take, leave1, leave2});
 
     }
     int longestCommonSubsequence(string text1, string text2) {
