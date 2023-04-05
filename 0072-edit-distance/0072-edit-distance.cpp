@@ -1,7 +1,7 @@
 class Solution {
 public:
-    int dp[505][505];
     string s, t;
+    vector<vector<int>> dp;
     int rec(int i, int j) {
         
         if(i == s.size()) // base case 1
@@ -25,9 +25,7 @@ public:
     }
     int minDistance(string word1, string word2) {
         s = word1; t = word2;
-        
-        memset(dp, -1, sizeof dp);
-        
+        dp.resize(word1.length() + 1, vector<int>(word2.length() + 1, -1));
         return rec(0, 0);
     }
 };
