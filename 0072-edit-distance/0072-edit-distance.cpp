@@ -15,7 +15,7 @@ public:
             return ret;
         
         if(s[i] == t[j])
-            return rec(i + 1, j + 1);
+            return ret = rec(i + 1, j + 1);
         
         int replace = rec(i + 1, j + 1) + 1;
         int insert = rec(i + 1, j) + 1;
