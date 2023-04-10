@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[100000];
+    int dp[10005];
     int rec(int n) {
         
         if(n == 0)
@@ -12,7 +12,7 @@ public:
             return ret;
         
         ret = 1e9;
-        for(int i = 1 ; i <= n; i++) {
+        for(int i = 1 ; i*i <= n; i++) {
             if(n - (1LL * i * i) >= 0) {
                 ret = min(ret, rec(n - (1LL * i * i)) + 1);
             }
