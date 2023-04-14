@@ -17,8 +17,7 @@ public:
         if(s[l] == s[r]) {
             ret = max(ret, rec(l + 1, r - 1, s) + 2);
         }else {
-            ret = max(ret, rec(l + 1, r, s));
-            ret = max(ret, rec(l, r - 1, s));
+            ret = max(rec(l + 1, r, s), rec(l, r - 1, s));
         }
         
         return ret;
