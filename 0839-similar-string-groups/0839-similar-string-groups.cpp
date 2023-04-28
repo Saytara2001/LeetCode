@@ -46,17 +46,18 @@ public:
         DSU dsu(n);
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                int diff = 0;
-                if(dsu.FindParent(i) != dsu.FindParent(j)) {
-                    for (int k = 0; k < v[i].size(); ++k) {
-                            if (v[i][k] != v[j][k]) {
-                                diff++;
-                            }
+                set<char> set;
+                for (int k = 0; k < v[i].size(); ++k) {
+                    if (v[i][k] != v[j][k]) {
+                        set.insert(v[i][k]);
+                        set.insert(v[j][k]);
                     }
-                    if (diff == 2 or diff == 0) {
-                        if(dsu.Connect(i, j))
-                            comp--;
-                    }
+                    if(set.size() > 2)
+                        break;
+                }
+                if (set.size() == 2 or set.size() == 0) {
+                    if(dsu.Connect(i, j))
+                        comp--;
                 }
             }
         }
