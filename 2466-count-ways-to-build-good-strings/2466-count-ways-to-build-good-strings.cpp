@@ -32,7 +32,6 @@ public:
         for(int i = low; i <= high; i++) {
             int res = rec(i, zero, one);;
             ans += res;
-            cout<< res<<" "<< ans<< endl;
             ans %= mod;
         }
         return ans;
