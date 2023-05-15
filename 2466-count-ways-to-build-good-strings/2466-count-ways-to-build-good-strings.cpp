@@ -3,8 +3,10 @@ public:
     long long dp[100005];
     long long mod = 1000000007;
     long long rec(int rem, int zero, int one) {
-        if(rem == 0) 
+        
+        if(rem <= 0) 
             return 1;
+        
         long long &ret = dp[rem];
         
         if(~ret)
