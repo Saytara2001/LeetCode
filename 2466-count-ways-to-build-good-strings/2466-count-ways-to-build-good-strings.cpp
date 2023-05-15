@@ -3,7 +3,8 @@ public:
     long long dp[100005];
     long long mod = 1000000007;
     long long rec(int rem, int zero, int one) {
-        
+        if(rem == 0) 
+            return 1;
         long long &ret = dp[rem];
         
         if(~ret)
@@ -24,10 +25,12 @@ public:
     
     int countGoodStrings(int low, int high, int zero, int one) {
         memset(dp, -1, sizeof dp);
-        dp[0] = 1;
+        //dp[0] = 1;
         long long ans = 0;
         for(int i = low; i <= high; i++) {
-            ans += rec(i, zero, one);
+            int res = rec(i, zero, one);;
+            ans += res;
+            cout<< res<<" "<< ans<< endl;
             ans %= mod;
         }
         return ans;
