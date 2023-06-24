@@ -18,13 +18,12 @@ public:
 
         int ans2 = rods[idx] + solve(idx+1, diff + rods[idx], rods); 
 
-        int ans3 = rods[idx] + solve(idx+1, diff - rods[idx], rods);  
+        int ans3 = solve(idx+1, diff - rods[idx], rods);  
 
         return ret = max(ans1, max(ans2, ans3));
     }
     int tallestBillboard(vector<int>& rods) {
         memset(dp, -1, sizeof(dp));
-        int ans = solve(0,0,rods) / 2; 
-        return ans;
+        return solve(0,0,rods);
     }
 };
