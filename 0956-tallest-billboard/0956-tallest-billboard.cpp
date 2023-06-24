@@ -1,24 +1,24 @@
 class Solution {
 public:
     int dp[20][10001];
-    int solve(int idx, int diff, vector<int> &rods)
+    int solve(int i, int diff, vector<int> &rods)
     {
-        if(idx == rods.size()) {
+        if(i == rods.size()) {
             if(diff == 0) {
                 return 0;
             }
             return -1e5;
         }
-        int &ret = dp[idx][diff + 5000];
         
+        int &ret = dp[i][diff + 5000];
         if(~ret)
             return ret;
 
-        int ans1 = solve(idx+1, diff, rods);  
+        int ans1 = solve(i+1, diff, rods);  
 
-        int ans2 = rods[idx] + solve(idx+1, diff + rods[idx], rods); 
+        int ans2 = solve(i+1, diff + rods[i], rods) + rods[i]; 
 
-        int ans3 = solve(idx+1, diff - rods[idx], rods);  
+        int ans3 = solve(i+1, diff - rods[i], rods);  
 
         return ret = max(ans1, max(ans2, ans3));
     }
