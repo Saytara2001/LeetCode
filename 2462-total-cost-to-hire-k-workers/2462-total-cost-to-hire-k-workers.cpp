@@ -13,9 +13,7 @@ public:
                 }else
                     break;
             }
-            int cost1 = q1.size() > 0? q1.top() : INT_MAX;
-            int cost2 = q2.size() > 0? q2.top() : INT_MAX;
-            if(cost1 <= cost2) {
+            if(q2.empty() or (!q1.empty() and q1.top() <= q2.top())) {
                 ans += q1.top();
                 q1.pop();
             }
