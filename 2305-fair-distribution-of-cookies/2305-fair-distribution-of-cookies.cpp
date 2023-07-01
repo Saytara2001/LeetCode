@@ -1,37 +1,35 @@
 class Solution {
 public:
-    int dfs(int i, vector<int>& distribute, vector<int>& cookies, int k, int zeroCount) {
-        // If there are not enough cookies remaining, return INT_MAX 
-        // as it leads to an invalid distribution.
-        if (cookies.size() - i < zeroCount) {
+    int mn = INT_MAX, n, kk;
+    vector<int> sum;
+    int rec(int i, vector<int>& cookies, int rem) {
+        if(n - i < rem)
             return INT_MAX;
-        }
-
-        // After distributing all cookies, return the unfairness of this
-        // distribution.
-        if (i == cookies.size()) {
-            return *max_element(distribute.begin(), distribute.end());
-        }
-
-        // Try to distribute the i-th cookie to each child, and update answer
-        // as the minimum unfairness in these distributions.
-        int answer = INT_MAX;
-        for (int j = 0; j < k; ++j) {
-            zeroCount -= distribute[j] == 0 ? 1 : 0;
-            distribute[j] += cookies[i];
-            
-            // Recursively distribute the next cookie.
-            answer = min(answer, dfs(i + 1, distribute, cookies, k, zeroCount)); 
-            
-            distribute[j] -= cookies[i];
-            zeroCount += distribute[j] == 0 ? 1 : 0;
+        if(i == n) {
+            int mx = 0;
+            for(auto vv: sum)
+                mx = max(mx, vv);
+            mn = min(mn, mx);;
+            return mn;
         }
         
-        return answer;
+        for(int j = 0; j < kk; j++) {
+            
+            rem -= sum[j] == 0 ? 1 : 0;
+            sum[j] += cookies[i];
+            
+            rec(i + 1, cookies, rem);
+            
+            
+            sum[j] -= cookies[i];
+            rem += sum[j] == 0 ? 1 : 0;
+        }
+        return mn;
     }
-    
     int distributeCookies(vector<int>& cookies, int k) {
-        vector<int> distribute(k, 0);
-        return dfs(0, distribute, cookies, k, k);
+        n = size(cookies);
+        kk = k;
+        sum = vector<int> (n);
+        return rec(0, cookies, k);
     }
 };
