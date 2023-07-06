@@ -6,7 +6,7 @@ public:
         int n = size(nums);
         while(r < n) {
             sum += nums[r++];
-            while(l < r and l < n and sum >= target) {
+            while(sum >= target) {
                 mnLen = min(mnLen, r - l);
                 sum -= nums[l++];
             }
