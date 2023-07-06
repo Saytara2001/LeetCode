@@ -5,12 +5,11 @@ public:
         int sum = 0, mnLen = 1e9;
         int n = size(nums);
         while(r < n) {
-            sum += nums[r];
-            while(l <= r and l < n and sum >= target) {
-                mnLen = min(mnLen, r - l + 1);
+            sum += nums[r++];
+            while(l < r and l < n and sum >= target) {
+                mnLen = min(mnLen, r - l);
                 sum -= nums[l++];
             }
-            r++;
         }
         return mnLen == 1e9 ? 0 : mnLen;
     }
