@@ -2,10 +2,17 @@ class Solution {
 public:
     int peakIndexInMountainArray(vector<int>& v) {
         int idx;
-        for(int i = 1; i < size(v) - 1; i++) {
-            if(v[i] > v[i-1] and v[i] > v[i + 1]) {
-                idx = i;
+        int l = 1, r = size(v) - 2;
+        while(l <= r) {
+            int mid = l + (r - l + 1) / 2;
+            if(v[mid] > v[mid - 1] and v[mid] > v[mid + 1]) {
+                idx = mid;
+                break;
             }
+            else if(v[mid] > v[mid - 1])
+                l = mid + 1;
+            else
+                r = mid - 1;
         }
         return idx;
     }
