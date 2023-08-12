@@ -14,7 +14,8 @@ public:
         if(~ret)
             return ret;
         
-        ret = rec(i + 1, j, obstacleGrid);
+        ret = 0;
+        ret += rec(i + 1, j, obstacleGrid);
         ret += rec(i, j + 1, obstacleGrid);
         
         return ret;
