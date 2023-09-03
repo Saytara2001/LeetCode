@@ -11,7 +11,8 @@ public:
         if(~ret)
             return ret;
         
-        ret = rec(i + 1, j);
+        ret = 0;
+        ret += rec(i + 1, j);
         ret += rec(i, j + 1);
         
         return ret;
