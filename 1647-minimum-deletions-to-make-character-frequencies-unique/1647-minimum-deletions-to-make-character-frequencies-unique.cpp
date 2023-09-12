@@ -16,31 +16,20 @@ public:
             }
         }
         sort(rem.begin(), rem.end());
+        int lstFreq = 1e5;
         int del = 0;
         while(rem.size()) {
-            int back = rem.back();
-            rem.pop_back();
-            while(vis[back] and back > 0) {
-                back--;
+            if(rem.back() > lstFreq) {
+                del += rem.back() - lstFreq;
+            }
+            lstFreq = min(lstFreq, rem.back());
+            while(vis[lstFreq] and lstFreq > 0) {
+                lstFreq--;
                 del++;
             }
-            vis[back] = 1;
+            vis[lstFreq] = 1;
+            rem.pop_back();
         }
-        // O(n)
-        // int lstFreq = 1e5;
-        // int del = 0;
-        // while(rem.size()) {
-        //     if(rem.back() > lstFreq) {
-        //         del += rem.back() - lstFreq;
-        //     }
-        //     lstFreq = min(lstFreq, rem.back());
-        //     while(vis[lstFreq] and lstFreq > 0) {
-        //         lstFreq--;
-        //         del++;
-        //     }
-        //     vis[lstFreq] = 1;
-        //     rem.pop_back();
-        // }
         return del;
     }
 };
