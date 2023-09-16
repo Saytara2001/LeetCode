@@ -27,6 +27,8 @@ public:
                 if(valid(ni, nj, n, m) and !vis[ni][nj] and abs(v[ni][nj] - v[i][j]) <= diff) {
                     q.push({ni, nj});
                     vis[ni][nj] = 1;
+                    if(make_pair(ni, nj) == make_pair(n - 1, m - 1))
+                        return true;
                 }
             }
         }
