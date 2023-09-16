@@ -1,49 +1,66 @@
 class Solution {
+private:
+    int effort[105][105];    // Store effort for each cell
+    int dx[4] = {0, 1, -1, 0};  // Changes in x coordinate for each direction
+    int dy[4] = {1, 0, 0, -1};  // Changes in y coordinate for each direction
+
 public:
-    int dx[4] = {-1, 0 , 1, 0},
-        dy[4] = {0, 1 , 0, -1};
-    bool valid(int i, int j, int n, int m) {
-        return (i >= 0 and i < n and j >= 0 and j < m);
-    }
-    bool can(int diff, vector<vector<int>>& v) {
-        
-        queue<pair<int, int>> q;
-        int n = v.size();
-        int m = v[0].size();
-        vector<vector<int>> vis(n, vector<int> (m));
-        
-        q.push({0 ,0});
-        vis[0][0]= 1;
-        
-        
-        while(q.size()) {
-            int i = q.front().first;
-            int j = q.front().second;
-            q.pop();
-            
-            for(int d = 0; d < 4 ; d++) {
-                int ni = i + dx[d]; 
-                int nj = j + dy[d];
-                if(valid(ni, nj, n, m) and !vis[ni][nj] and abs(v[ni][nj] - v[i][j]) <= diff) {
-                    q.push({ni, nj});
-                    vis[ni][nj] = 1;
-                    if(make_pair(ni, nj) == make_pair(n - 1, m - 1))
-                        return true;
+    // Dijkstra's Algorithm to find minimum effort
+    int dijkstra(vector<vector<int>>& heights) {
+        int rows = heights.size();
+        int cols = heights[0].size();
+
+        // Priority queue to store {effort, {x, y}}
+        std::priority_queue<std::pair<int, std::pair<int, int>>> pq;
+        pq.push({0, {0, 0}});  // Start from the top-left cell
+        effort[0][0] = 0;  // Initial effort at the starting cell
+
+        while (!pq.empty()) {
+            auto current = pq.top().second;
+            int cost = -pq.top().first;  // Effort for the current cell
+            pq.pop();
+
+            int x = current.first;
+            int y = current.second;
+
+            // Skip if we've already found a better effort for this cell
+            if (cost > effort[x][y])
+                continue;
+
+            // Stop if we've reached the bottom-right cell
+            if (x == rows - 1 && y == cols - 1)
+                return cost;
+
+            // Explore each direction (up, down, left, right)
+            for (int i = 0; i < 4; i++) {
+                int new_x = x + dx[i];
+                int new_y = y + dy[i];
+
+                // Check if the new coordinates are within bounds
+                if (new_x < 0 || new_x >= rows || new_y < 0 || new_y >= cols)
+                    continue;
+
+                // Calculate new effort for the neighboring cell
+                int new_effort = std::max(effort[x][y], std::abs(heights[x][y] - heights[new_x][new_y]));
+
+                // Update effort if a lower effort is found for the neighboring cell
+                if (new_effort < effort[new_x][new_y]) {
+                    effort[new_x][new_y] = new_effort;
+                    pq.push({-new_effort, {new_x, new_y}});
                 }
             }
         }
-        return vis[n - 1][m - 1];
+        return effort[rows - 1][cols - 1];  // Minimum effort for the path to the bottom-right cell
     }
+
+    // Function to find the minimum effort path
     int minimumEffortPath(vector<vector<int>>& heights) {
-        int l = 0, r = 1e6;
-        while(l < r) {
-            int mid = l + (r - l) / 2;
-            if(can(mid, heights)) {
-                r = mid;
-            }else {
-                l = mid + 1;
+        // Initialize effort for each cell to maximum value
+        for (int i = 0; i < heights.size(); i++) {
+            for (int j = 0; j < heights[i].size(); j++) {
+                effort[i][j] = INT_MAX;
             }
         }
-        return r;
+        return dijkstra(heights);  // Find minimum effort using dijkstra
     }
 };
