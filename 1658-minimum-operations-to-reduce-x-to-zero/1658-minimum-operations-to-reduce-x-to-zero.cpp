@@ -1,34 +1,21 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        //minimum prefix and suffix 
-        int pre = 0, cnt = 0, n = size(nums);
-        int i = 0;
-        for( ;i < n; i++) {
-            if(pre + nums[i] <= x) {
-                pre += nums[i];
-                cnt++;
-            }else {
-                i--;
-                break;
+        //two pointers
+        int all = accumulate(begin(nums), end(nums), 0);
+        int n = size(nums), mn = (all == x ? n : 1e9);
+        int l = 0, r = 0, have = 0;
+        while(l <= r and r < n) {
+            have += nums[r++];
+            while(all - have < x and l < r) {
+                have -= nums[l++];
+            }
+            if(all - have == x) {
+                // cout << have <<" "<< all <<" "<<l <<" "<<r<<endl;
+                mn = min(mn, n - (r - l));
             }
         }
-        
-        int mn = 1e9;
-        if(pre == x)
-            mn = min(mn, cnt);
-        
-        int r = n - 1;
-        while(r >= 0 and i < r) {
-            pre += nums[r--];
-            cnt++;
-            while(i >= 0 and pre > x) {
-                pre -= nums[i--];
-                cnt--;
-            }
-            if(pre == x)
-                mn = min(mn, cnt);
-        }
-        return mn == 1e9 ? -1 : mn;
+        if(mn == 1e9) mn = -1;
+        return mn;
     }
 };
