@@ -11,7 +11,6 @@ public:
                 have -= nums[l++];
             }
             if(all - have == x) {
-                // cout << have <<" "<< all <<" "<<l <<" "<<r<<endl;
                 mn = min(mn, n - (r - l));
             }
         }
