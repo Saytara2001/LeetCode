@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        //minimum and prefix
+        //minimum prefix and suffix 
         int pre = 0, cnt = 0, n = size(nums);
         int i = 0;
         for( ;i < n; i++) {
