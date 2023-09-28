@@ -1,9 +1,12 @@
 class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& nums) {
-        sort(begin(nums), end(nums), [&](auto &x, auto &y){
-           return x % 2 < y % 2; 
-        });
-        return nums;
+        vector<int> even, odd;
+        for(auto it: nums) {
+            it & 1 ? odd.push_back(it) : even.push_back(it);
+        }
+        for(auto it: odd)
+            even.push_back(it);
+        return even;
     }
 };
