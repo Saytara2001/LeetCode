@@ -1,12 +1,25 @@
 class Solution {
 public:
+    int dp[46];
+    int rec(int i, int n) {
+        //not valid
+        if(i > n)
+            return 0;
+        
+        if(i == n)
+            return 1;
+        
+        int &ret = dp[i];
+        if(~ret)
+            return ret;
+        
+        ret = rec(i + 1, n);
+        ret += rec(i + 2, n);
+        
+        return ret;
+    }
     int climbStairs(int n) {
-        vector<int> dp(n + 1);
-        dp[0] = 1; // one choice (1 step) first stair
-        dp[1] = 2; // two choice (2 step) second stair (1 + 1, 2)
-        for(int i = 2 ;i < n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
-        }
-        return dp[n - 1];
+        memset(dp, -1, sizeof dp);
+        return rec(0, n);
     }
 };
