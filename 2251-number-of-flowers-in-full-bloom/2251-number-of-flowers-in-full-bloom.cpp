@@ -1,12 +1,8 @@
-// typedef (lower_bound(begin(indices), end(indices), i) - begin(indices)) getCompressedIndex(i)
 class Solution {
 public:
-    
     vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
+        // solution with coordinate compression
         vector<int> indices;
-        // auto getCompressedIndex = [](int i) {
-        //     return lower_bound(begin(indices), end(indices), i) - begin(indices);
-        // };
         vector<int> pref(1000000);
         for(auto it: flowers) {
             indices.push_back(it[0]);
