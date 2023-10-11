@@ -1,33 +1,21 @@
 class Solution {
 public:
     vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
-        // solution with coordinate compression
-        vector<int> indices;
-        vector<int> pref(1000000);
+        
+        vector<int> start, finish;
         for(auto it: flowers) {
-            indices.push_back(it[0]);
-            indices.push_back(it[1]);
+            start.push_back(it[0]);
+            finish.push_back(it[1]);
         }
-        for(auto it: people) {
-            indices.push_back(it);
-        }
-        //go compress and prefix
-        sort(indices.begin(), indices.end());
-	    indices.erase(unique(indices.begin(), indices.end()), indices.end());
-        for(auto it: flowers) {
-            int com = lower_bound(begin(indices), end(indices), it[0]) - begin(indices);
-            pref[com]++;
-            com = lower_bound(begin(indices), end(indices), it[1]) - begin(indices);
-            pref[com + 1]--;
-        }
-        for(int i = 1 ; i < 1000000; i++) {
-            pref[i] += pref[i - 1];
-        }
+        
+        sort(begin(start), end(start));  
+        sort(begin(finish), end(finish));
         
         vector<int> res;
         for(auto it: people) {
-            int com = lower_bound(begin(indices), end(indices), it) - begin(indices);
-            res.push_back(pref[com]);
+            int j = upper_bound(begin(start), end(start), it) - begin(start);
+            int i = lower_bound(begin(finish), end(finish), it) - begin(finish);
+            res.push_back(j - i);
         }
         return res;
     }
