@@ -8,7 +8,7 @@ public:
         if(i == 0 and steps == 0)
             return 1;
         
-        //i have 500 then max to return again is 500 / 2
+        //i have 500 steps then to return to zero index again need 500 / 2 steps so max is 250
         if(i < 0 or i >= sz or steps < 0 or i > 250)
             return 0;
             
