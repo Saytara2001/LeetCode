@@ -1,6 +1,6 @@
 class Solution {
 public:
-    map<int, vector<int>> adj;
+    unordered_map<int, vector<int>> adj;
     vector<int> res;
     void dfs(int node, int par) {
         res.push_back(node);
