@@ -1,51 +1,45 @@
 class Graph {
 public:
-    int sz;
-    vector<vector<pair<int, int>>> adj;
+    vector<vector<pair<int, int>>> adjList;
     Graph(int n, vector<vector<int>>& edges) {
-        sz = n;
-        adj = vector<vector<pair<int, int>>> (n);
-        for(int i = 0; i < size(edges); i++) {
-            adj[edges[i][0]].push_back({edges[i][1], edges[i][2]});
-        }
+        adjList.resize(n);
+        for (auto& e: edges)
+            adjList[e[0]].push_back(make_pair(e[1], e[2]));
     }
-    
+
     void addEdge(vector<int> edge) {
-        adj[edge[0]].push_back({edge[1], edge[2]});
+        adjList[edge[0]].push_back(make_pair(edge[1], edge[2]));
     }
-    
+
     int shortestPath(int node1, int node2) {
-        
-        vector<int> dist(sz, 1e9);
-        queue<int> q;
-        
-        q.push(node1);
-        dist[node1] = 0;
-        
-        while(q.size()) {
-            
-            int node = q.front();
-            q.pop();
-            
-            for(auto it: adj[node]) {
-                
-                int child = it.first;
-                int cost = it.second;
-                
-                if(dist[child] > dist[node] + cost) {
-                    dist[child] = dist[node] + cost;
-                    q.push(child);
+        int n = adjList.size();
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
+        vector<int> costForNode(n, INT_MAX);
+        costForNode[node1] = 0;
+        pq.push({0, node1});
+
+        while (!pq.empty()) {
+            int currCost = pq.top()[0];
+            int currNode = pq.top()[1];
+            pq.pop();
+
+            if (currCost > costForNode[currNode]) {
+                continue;
+            }
+            if (currNode == node2) {
+                return currCost;
+            }
+            for (auto& neighbor : adjList[currNode]) {
+                int neighborNode = neighbor.first;
+                int cost = neighbor.second;
+                int newCost = currCost + cost;
+
+                if (newCost < costForNode[neighborNode]) {
+                    costForNode[neighborNode] = newCost;
+                    pq.push({newCost, neighborNode});
                 }
             }
         }
-        
-        return dist[node2] == 1e9 ? -1 : dist[node2];
+        return -1;
     }
 };
-
-/**
- * Your Graph object will be instantiated and called as such:
- * Graph* obj = new Graph(n, edges);
- * obj->addEdge(edge);
- * int param_2 = obj->shortestPath(node1,node2);
- */
