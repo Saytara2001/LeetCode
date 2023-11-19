@@ -9,6 +9,7 @@ public:
             while(cur < n and nums[cur] == nums[i]) {
                 cur++;
             }
+            //freq * traversal
             ans += (cur - i) * segment;
             i = cur - 1;
             segment++;
