@@ -4,10 +4,7 @@ public:
         int n = size(nums), sz = size(l);
         vector<bool> res;
         for(int i = 0; i < sz; i++) {
-            vector<int> v;
-            for(int j = l[i]; j <= r[i]; j++) {
-                v.push_back(nums[j]);
-            }
+            vector<int> v(begin(nums) + l[i], begin(nums) + r[i] + 1);
             sort(begin(v), end(v));
             bool ok = true;
             for(int j = 1; j < size(v) and size(v) > 1; j++) {
