@@ -2,9 +2,7 @@ class Solution {
 public:
     vector<int> getSumAbsoluteDifferences(vector<int>& nums) {
         int suffix = 0, n = size(nums);
-        for(int i = 0; i < n; i++) {
-            suffix += nums[i];
-        }
+        suffix = accumulate(begin(nums), end(nums), suffix);
         int prefix = 0;
         vector<int> res;
         for(int i = 0; i < n; i++) {
