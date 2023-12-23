@@ -6,9 +6,9 @@ public:
         vis.insert({x, y});
         for(auto it: path) {
             if (it == 'N') y++;
-            else if(it == 'S') y--;
-            else if(it == 'E') x++;
-            else x--;
+            if(it == 'S') y--;
+            if(it == 'E') x++;
+            if(it == 'W') x--;
             if(vis.count({x, y})) return true;
             vis.insert({x, y});
         }
