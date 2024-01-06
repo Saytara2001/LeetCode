@@ -5,7 +5,7 @@ public:
     vector<int> start, last, bonus;
     int rec(int i) {
         
-        if(i == size(start))
+        if(i >= size(start))
             return 0;
         
         int &ret = dp[i];
@@ -16,11 +16,8 @@ public:
         
         //try to take
         int idx = lower_bound(begin(start), end(start), last[i]) - begin(start);
-        if(idx < size(start)) {
-            ret = max(ret, rec(idx) + bonus[i]);
-        }else {
-            ret = max(ret, rec(size(start)) + bonus[i]);
-        }
+        
+        ret = max(ret, rec(idx) + bonus[i]);
         
         return ret;
     }
