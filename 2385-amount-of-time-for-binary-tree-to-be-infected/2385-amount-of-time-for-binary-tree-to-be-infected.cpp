@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    map< int, vector<int> > adj;
+    unordered_map< int, vector<int> > adj;
     void convert(TreeNode* root, int parent) {
         if(root == NULL) 
             return;
