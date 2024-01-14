@@ -12,8 +12,10 @@ public:
         }
         for(int i = 0; i < 26; i++) {
             int cnt = (freq1[i] == 0) + (freq2[i] == 0);
-            if(cnt == 1)
+            if(cnt == 1) {
+                //then i cannot make them equals
                 return false;
+            }
         }
         sort(begin(freq1), end(freq1));
         sort(begin(freq2), end(freq2));
