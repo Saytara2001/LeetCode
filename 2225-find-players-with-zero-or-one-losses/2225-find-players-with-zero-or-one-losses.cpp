@@ -4,7 +4,7 @@ public:
         
         vector<vector<int>> ans(2);
         set<int> all;
-        multiset<int> losers;
+        unordered_multiset<int> losers;
         
         for(auto it: matches) {
             all.insert(it[0]);
