@@ -5,7 +5,7 @@ public:
         return c == 'a' or c == 'e' or c == 'i' or c == 'u' or c == 'o';
     }
     string reverseVowels(string s) {
-        vector<int> vowels;
+        vector<char> vowels;
         for(auto it: s) {
             if(isVowel(it)) {
                 vowels.push_back(it);
