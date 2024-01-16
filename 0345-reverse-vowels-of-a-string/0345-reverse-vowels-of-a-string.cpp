@@ -5,17 +5,17 @@ public:
         return c == 'a' or c == 'e' or c == 'i' or c == 'u' or c == 'o';
     }
     string reverseVowels(string s) {
-        vector<char> vowels;
-        for(auto it: s) {
-            if(isVowel(it)) {
-                vowels.push_back(it);
+        int n = size(s);
+        int l = 0, r = n - 1;
+        while(l < r) {
+            if(isVowel(s[l])) {
+                while(!isVowel(s[r])) {
+                    r--;
+                }
+                swap(s[l], s[r]);
+                r--;
             }
-        }
-        for(auto &it: s) {
-            if(isVowel(it)) {
-                it = vowels.back();
-                vowels.pop_back();
-            }
+            l++;
         }
         return s;
     }
