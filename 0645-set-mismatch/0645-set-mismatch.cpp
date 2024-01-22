@@ -1,21 +1,17 @@
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
-        sort(begin(nums), end(nums));
         int n = size(nums);
-        int missed = n, rep = 0;
-        int cur = 1;
+        int all = n * (n + 1) / 2;
+        int sum = 0;
+        int repeated;
+        sort(begin(nums), end(nums));
         for(int i = 0; i < n; i++) {
-            if(nums[i] == cur) {
-                cur++;
-            }else if(nums[i] > cur) {
-                missed = cur++;
-                i--;
-            }else if(nums[i] < cur) {
-                rep = nums[i];
-            }
+            if(i > 0 and nums[i] == nums[i - 1])
+                repeated = nums[i];
+            sum += nums[i];
         }
-        vector<int> res {rep, missed};
-        return res;
+        int missed = all - sum + repeated;
+        return {repeated, missed};
     }
 };
