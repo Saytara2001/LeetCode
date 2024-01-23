@@ -1,19 +1,28 @@
 class Solution {
 public:
-    int rec(int i, vector<string>& arr, string s) {
-        if(i == size(arr)) {
-            vector<bool> freq(26, 0);
-            for(auto it: s) {
-                if(freq[it - 'a']) return 0;
-                freq[it - 'a'] = true;
-            }
-            return size(s);
-        }
-        int mx = rec(i + 1, arr, s);
-        mx = max(mx, rec(i + 1, arr, s + arr[i]));
-        return mx;
-    }
     int maxLength(vector<string>& arr) {
-        return rec(0, arr, "");
+        int n = size(arr);
+        int mx = 0;
+        for(int mask = 0; mask < (1 << n); mask++) {
+            vector<bool> freq(26, 0);
+            int cnt = 0;
+            bool ok = true;
+            for(int i = 0; i < n; i++) {
+                if(mask & (1 << i)) {
+                    for(auto c: arr[i]) {
+                         if(freq[c - 'a']) {
+                             ok = false;
+                             break;
+                         }
+                        freq[c - 'a'] = true;
+                    }
+                    cnt += size(arr[i]);
+                }
+                if(!ok) break;
+            }
+            if(ok)
+                mx = max(mx, cnt);
+        }
+        return mx;
     }
 };
