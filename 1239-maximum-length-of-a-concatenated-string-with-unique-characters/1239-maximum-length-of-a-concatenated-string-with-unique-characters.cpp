@@ -20,7 +20,7 @@ public:
                 }
                 if(!ok) break;
             }
-            if(ok)
+            if(ok) 
                 mx = max(mx, cnt);
         }
         return mx;
