@@ -4,7 +4,6 @@ public:
         stack<int> st;
         for(auto it: tokens) {
             if(it != "+" and it != "-" and it != "*" and it != "/") {
-                cout << stoi(it) <<endl;
                 st.push(stoi(it));
             }else {
                 int num1 = st.top();
