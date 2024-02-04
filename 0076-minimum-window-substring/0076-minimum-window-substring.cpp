@@ -3,7 +3,7 @@ public:
     string minWindow(string s, string t) {
         
         int rem = size(t);
-        vector<int> freqHave(200), freqAll(200);
+        vector<int> freqHave(100), freqAll(100);
         
         for(auto c: t) {
             freqAll[c - 'A']++; 
@@ -33,7 +33,6 @@ public:
             freqHave[s[l] - 'A']--;
             l++;
         }
-        string ans = start == -1 ? "" : s.substr(start, mnLength);
-        return ans;
+        return start == -1 ? "" : s.substr(start, mnLength);
     }
 };
