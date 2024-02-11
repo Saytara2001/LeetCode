@@ -7,12 +7,8 @@ public:
                 t += tolower(c); //O(1)
             }
         }
-        int l = 0, r = size(t) - 1;
-        while(l < r) {
-            if(t[l] != t[r])
-                return false;
-            l++, r--;
-        }
-        return true;
+        s = t;
+        reverse(begin(s), end(s));
+        return s == t;
     }
 };
