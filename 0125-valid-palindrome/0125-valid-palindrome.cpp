@@ -1,12 +1,9 @@
 class Solution {
 public:
-    bool isAlphaNumric(char c) {
-        return (c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z') or (c >= '0' and c <= '9');
-    }
     bool isPalindrome(string s) {
         string t = "";
         for(auto c: s) {
-            if(isAlphaNumric(c)) {
+            if(iswalnum(c)) {
                 t += tolower(c); //O(1)
             }
         }
