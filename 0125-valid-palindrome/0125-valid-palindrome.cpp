@@ -7,8 +7,11 @@ public:
                 t += tolower(c); //O(1)
             }
         }
-        s = t;
-        reverse(begin(s), end(s));
-        return s == t;
+        int n = size(t);
+        for(int i = 0 ; i < n / 2; i++) {
+            if(t[i] != t[n - i - 1])
+                return false;
+        }
+        return true;
     }
 };
