@@ -1,12 +1,19 @@
 class Solution {
 public:
+    bool isAlphaNumric(char c) {
+        return (c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z') or (c >= '0' and c <= '9');
+    }
     bool isPalindrome(string s) {
-        int n = size(s);
-        int l = 0, r = n - 1;
+        string t = "";
+        for(auto c: s) {
+            if(isAlphaNumric(c)) {
+                t += tolower(c); //O(1)
+            }
+        }
+        int l = 0, r = size(t) - 1;
         while(l < r) {
-            while(l < r and !iswalnum(s[l])) l++;
-            while(l < r and !iswalnum(s[r])) r--;
-            if(tolower(s[l]) != tolower(s[r])) return false; 
+            if(t[l] != t[r])
+                return false;
             l++, r--;
         }
         return true;
