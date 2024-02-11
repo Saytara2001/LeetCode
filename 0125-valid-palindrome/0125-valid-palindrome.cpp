@@ -1,16 +1,13 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string tmp = "";
-        for(auto c: s) {
-            if(iswalnum(c)) {
-                tmp += tolower(c);
-            }
-        }
-        int n = size(tmp);
-        for(int i = 0; i < n / 2; i++) {
-            if(tmp[i] != tmp[n - i - 1])
-                return false;
+        int n = size(s);
+        int l = 0, r = n - 1;
+        while(l < r) {
+            while(l < r and !iswalnum(s[l])) l++;
+            while(l < r and !iswalnum(s[r])) r--;
+            if(tolower(s[l]) != tolower(s[r])) return false; 
+            l++, r--;
         }
         return true;
     }
