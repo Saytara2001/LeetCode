@@ -2,16 +2,13 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         //n log n
-        sort(begin(nums), end(nums));
-        int n = size(nums);
-        
-        for(int i = 0; i < n; i++) {
-            int cur = i;
-            while(cur < n and nums[i] == nums[cur]) cur++;
-            if(cur - i > n / 2)
-                return nums[i];
-            i = cur - 1;
+        map<int, int> mp;
+        for(auto it: nums) {
+            mp[it]++;
         }
+        for(auto it: mp)
+            if(it.second > size(nums) / 2)
+                return it.first;
         return 0;
     }
 };
