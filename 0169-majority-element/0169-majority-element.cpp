@@ -1,7 +1,7 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        
+        //n log n
         sort(begin(nums), end(nums));
         int n = size(nums);
         
