@@ -1,20 +1,20 @@
 class Solution {
 public:
     int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
-        multiset<int> biggest;
+        priority_queue<int> pq;
         long long rem = 0; 
         int n = size(heights);
         for(int i = 1; i < n; i++) {
             int diff = heights[i] - heights[i - 1];
             if(diff > 0) {
                 if(ladders > 0) {
-                    biggest.insert(diff);
+                    pq.push(-diff);
                     ladders--;
                 }else {
-                    if(biggest.size() and *biggest.begin() < diff) {
-                        rem += *biggest.begin();
-                        biggest.erase(biggest.begin());
-                        biggest.insert(diff);
+                    if(pq.size() and -pq.top() < diff) {
+                        rem += -pq.top();
+                        pq.pop();
+                        pq.push(-diff);
                     }else {
                         rem += diff;
                     }
