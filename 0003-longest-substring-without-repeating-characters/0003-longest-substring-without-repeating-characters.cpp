@@ -1,21 +1,16 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        bool freq[300] = {0};
+        int l = 0 , r = 0, n = size(s);
         int mx = 0;
-        set<char> st;
-        for(auto i : s) st.insert(i);
-        int szz = st.size();
-        int n = s.size();
-        for(int i = 0; i < n; i++) {
-            int c = 0;
-            bool mp[250] = {0};
-            for(int j = i; j < min(n, i + szz); j++) {
-                if(mp[s[j]]) break;
-                mp[s[j]] = 1;
-                c++;
+        while(l <= r and r < n) {
+            if(!freq[s[r]]) {
+                freq[s[r++]] = true;
+            }else {
+                 freq[s[l++]] = false;
             }
-            mx = max(mx, c);
-            if(mx == szz) break;
+            mx = max(mx, r - l);
         }
         return mx;
     }
