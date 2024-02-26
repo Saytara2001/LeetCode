@@ -3,23 +3,17 @@ public:
     bool increasingTriplet(vector<int>& nums) {
         
         int n = size(nums);
-        int mnNum = INT_MAX, mxNum = INT_MIN;
-        
-        vector<int> Mn(n), Mx(n);
+        int mn1 = INT_MAX, mn2 = INT_MAX;
         
         for(int i = 0; i < n; i++) {
-            
-            mnNum = min(mnNum, nums[i]);
-            Mn[i] = mnNum;
-            
-            mxNum = max(mxNum, nums[n - i - 1]);
-            Mx[n - i - 1] = mxNum;
-            
-        }
-        for(int i = 0; i < n; i++) {
-            if(nums[i] > Mn[i] and nums[i] < Mx[i])
+            if(nums[i] <= mn1) 
+                mn1 = nums[i];
+            else if(nums[i] <= mn2) 
+                mn2 = nums[i];
+            else 
                 return true;
         }
+        
         return false;
     }
 };
