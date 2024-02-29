@@ -25,10 +25,10 @@ public:
                 if(top->left != NULL) q.push(top->left);
                 if(top->right != NULL) q.push(top->right);
                 if(lvl & 1) {
-                    if((top->val & 1) or (prevNum != 0 and prevNum <= top->val))
+                    if((top->val & 1) or (prevNum and prevNum <= top->val))
                         return false;
                 }else {
-                    if(!(top->val & 1) or (prevNum != 0 and prevNum >= top->val))
+                    if(!(top->val & 1) or (prevNum and prevNum >= top->val))
                         return false;
                 }
                 prevNum = top->val;
