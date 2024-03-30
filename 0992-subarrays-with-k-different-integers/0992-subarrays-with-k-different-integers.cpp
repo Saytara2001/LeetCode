@@ -4,19 +4,24 @@ public:
         int n = size(nums);
         int l = 0, r = 0, uni = 0, res = 0;
         vector<int> freq(2e4 + 1);
-        while(l < n or r < n) {
-            while(r < n and (freq[nums[r]] or uni < k)) {
-                uni += (freq[nums[r]] == 0);
-                freq[nums[r++]]++;
-                if(uni == k) res++;
+        int cnt = 0;
+        while(r < n) {
+            //move r and take one element
+            uni += (freq[nums[r]] == 0);
+            freq[nums[r++]]++;
+            //if have more than k diffrerent element move left
+            if(uni > k) {
+                freq[nums[l++]]--;
+                uni--;
+                cnt = 0;
             }
-            if(l < n) {
-                if(--freq[nums[l++]] == 0) uni--;
-                if(uni == k) res++;
-                //decrease r again when it's always valid
-                while(l < r and freq[nums[r - 1]] > 1) {
-                    freq[nums[--r]]--;
+            if(uni == k) {
+                //while still valid count the answer
+                while(l < n and freq[nums[l]] > 1) {
+                    --freq[nums[l++]];
+                    cnt++;
                 }
+                res += cnt + 1;
             }
         }
         return res;
