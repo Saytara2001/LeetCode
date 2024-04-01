@@ -12,16 +12,13 @@ public:
         stack<string> st;
         int n = size(s);
         for(int i = 0; i < n; i++) {
-            // cout << s[i] << endl;
             if(s[i] == ']') {
                 string tmp = "";
-                // cout << "ok0" << endl;
                 //remove encoded string
                 while(st.top() != "[") {
                     tmp = st.top() + tmp;
                     st.pop();
                 }
-                // cout << "ok1" << endl;
                 st.pop(); //remove open bracket ==> [
                 //remove number
                 int rep = 0, pow = 1;
@@ -31,11 +28,9 @@ public:
                     pow *= 10;
                     st.pop();
                 }
-                // cout << "ok2" << endl;
                 //generate string
                 string gen = "";
                 for(int j = 0; j < rep; j++) gen += tmp;
-                // cout << gen << endl;
                 st.push(gen);
             }else {
                 string t = "";
