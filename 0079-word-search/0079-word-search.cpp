@@ -1,57 +1,43 @@
-int dr[]{1,-1,0, 0};       
-int dc[]{0, 0,1,-1,};
 class Solution {
 public:
     int n, m;
-    vector<vector<char>> _board;
-    string _word;
-    Solution()
-    {
-        ios_base::sync_with_stdio(false); 
-        cin.tie(NULL); 
-        cout.tie(NULL);
-    }
-    bool isValid(int r, int c)
-    {
-        if (r < 0 || r >= n)
-            return false;
-        if (c < 0 || c >= m)
-            return false;
-        return true;
-    }
+    int dx[4] = {1,-1,0, 0};       
+    int dy[4] = {0, 0,1,-1,};
+    vector<vector<bool>> vis;
 
-    bool DFS(int r, int c, int ptr)
-    {
-        if (ptr == _word.size())
+    bool rec(int i, int j, int idx, string s, vector<vector<char>>& board, string& word) {
+        if(idx == size(word)) 
             return true;
-        
-        if (!isValid(r, c) || _board[r][c] == '0' || _word[ptr] != _board[r][c])
+        if(i < 0 or i >= n or j < 0 or j >= m or vis[i][j]) 
             return false;
-        char tmp = _board[r][c];
-        _board[r][c] = '0';
-        for (int i = 0; i < 4; ++i)
-        {
-            if(DFS(r + dr[i], c + dc[i], ptr+1))
-                return true;
+        
+        for(int d = 0; d < 4; d++) {
+            int ni = i + dx[d];
+            int nj = j + dy[d];
+            if(word[idx] == board[i][j]) {
+                
+                vis[i][j] = true;
+                
+                if(rec(ni, nj, idx + 1, s + board[i][j], board, word)) 
+                    return true;
+                
+                vis[i][j] = false;
+            }
         }
-        _board[r][c] = tmp;
-
+        
         return false;
     }
-
     bool exist(vector<vector<char>>& board, string word) {
-        n = board.size(), m = board[0].size();
-        _board = board;
-        _word = word;
-        for (int i = 0; i < n; ++i)
-        {
-            for (int j = 0; j < m; ++j)
-            {
-                if (DFS(i, j, 0))
+        n = size(board), m = size(board[0]);
+        vis = vector<vector<bool>> (n, vector<bool> (m));
+        //Time: n * m * dfs ==> n * m * (4 ^ size(word))
+        for(int i = 0; i < n; i++) {
+            for(int j = 0;  j < m; j++) {
+                if(rec(i, j, 0, "", board, word)) {
                     return true;
+                }
             }
         }
         return false;
     }
-
 };
