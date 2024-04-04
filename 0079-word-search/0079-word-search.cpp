@@ -21,10 +21,10 @@ public:
                 if(rec(ni, nj, idx + 1, s + board[i][j], board, word)) 
                     return true;
                 
-                vis[i][j] = false;
+                
             }
         }
-        
+        vis[i][j] = false;
         return false;
     }
     bool exist(vector<vector<char>>& board, string word) {
