@@ -9,7 +9,6 @@ public:
         if(~ret)
             return ret;
         
-        ret = 0;
         ret = max(ret, rec(i + 1, prev, s, k)); //leave
         if(prev == 27 or abs(prev - (s[i] - 'a')) <= k){
             ret = max(ret, rec(i + 1, s[i] - 'a', s, k) + 1); //take
