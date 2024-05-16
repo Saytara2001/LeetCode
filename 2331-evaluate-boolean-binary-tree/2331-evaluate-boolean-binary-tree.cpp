@@ -16,12 +16,13 @@ public:
             return root->val;
         int left = dfs(root->left);
         int right = dfs(root->right);
+        int ans = 0;
         if(root->val == 2) {
-            left |= right;
+            ans = left | right;
         }else {
-            left &= right;
+            ans = left & right;
         }
-        return left;
+        return ans;
     }
     bool evaluateTree(TreeNode* root) {
         return dfs(root);
