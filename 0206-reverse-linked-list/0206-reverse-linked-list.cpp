@@ -13,18 +13,19 @@ public:
     ListNode* dfs(ListNode* head, ListNode* par) {
         if(!head) 
             return head;
-        dfs(head->next, head);
+        
+        ListNode *ans = head;
+        
+        if(head->next) {
+            ans = dfs(head->next, head);
+        }
+        
         head->next = par;
         
-        return head;
+        return ans;
     }
     ListNode* reverseList(ListNode* head) {
         
-        ListNode *cur = head;
-        while(cur and cur->next) 
-            cur = cur->next;
-        
-        dfs(head, NULL);
-        return cur;
+        return dfs(head, NULL);
     }
 };
