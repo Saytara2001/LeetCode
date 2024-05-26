@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[100001][2][3];
+    vector<vector<vector<int>>> dp;
     int sz;
     int const mod = 1e9 + 7;
     int rec(int i, int A, int L) {
@@ -26,7 +26,7 @@ public:
     }
     int checkRecord(int n) {
         sz = n;
-        memset(dp, -1, sizeof dp);
+        dp = vector<vector<vector<int>>>(n + 1, vector<vector<int>>(2, vector<int>(3, -1)));
         return rec(0, 0, 0);
     }
 };
