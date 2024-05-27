@@ -10,22 +10,34 @@
  */
 class Solution {
 public:
-    ListNode *cur;
-    bool ok = true;
-    bool rec(ListNode *head) {
-        
-        if(!head) 
-            return 0;
-        
-        rec(head->next);
-        
-        ok &=( head->val == cur->val);
-        cur = cur->next;
-        
-        return ok;
-    }
     bool isPalindrome(ListNode* head) {
-        cur = head;
-        return rec(head);
+        ListNode *slow, *fast;
+        slow = fast = head;
+        
+        //find the middle (slow)
+        while (fast and fast->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        
+        //reverse second half
+        ListNode *prev = NULL;
+        while(slow) {
+            ListNode *tmp = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = tmp;
+        }
+        
+        //check plaindrome
+        ListNode *left = head;
+        while(prev) {
+            if(left->val != prev->val)
+                return false;
+            left = left->next;
+            prev = prev->next;
+        }
+        
+        return true;
     }
 };
