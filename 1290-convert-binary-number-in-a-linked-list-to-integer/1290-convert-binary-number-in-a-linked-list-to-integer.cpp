@@ -10,15 +10,12 @@
  */
 class Solution {
 public:
-    int pow = 0;
-    int rec(ListNode *head) {
-        if(!head)
-            return 0;
-        int res = rec(head->next);
-        
-        return res + (1 << pow++) * head->val;
-    }
     int getDecimalValue(ListNode* head) {
-        return rec(head);
+        int res = 0;
+        while(head) {
+            res = res * 2 + head->val;
+            head = head->next;
+        }
+        return res;
     }
 };
