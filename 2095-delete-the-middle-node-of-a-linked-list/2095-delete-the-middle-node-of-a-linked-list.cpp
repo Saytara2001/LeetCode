@@ -20,6 +20,7 @@ public:
             prev = slow;
             slow = slow->next;
         }
+        //to handle list with one node
         if(prev == NULL) 
             return prev;
         prev->next = slow->next;
