@@ -34,9 +34,6 @@ public:
         if(even->next) {
             even->next = NULL;
         }
-        if(odd->next) {
-            odd->next = NULL;
-        }
         odd->next = startEven;
         return head;
     }
