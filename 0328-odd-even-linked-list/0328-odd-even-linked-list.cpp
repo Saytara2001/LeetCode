@@ -19,21 +19,13 @@ public:
         ListNode *even = head->next;
         ListNode *startEven = even;
         
-        while(even->next and odd->next) {
-            
-            if(even->next) {
-                odd->next = even->next;
-                odd = odd->next;
-            }
-            
-            if(odd->next) {
-                even->next = odd->next;
-                even = even->next;
-            }
+        while(even and even->next) {
+            odd->next = odd->next->next;
+            even->next = even->next->next;
+            odd = odd->next;
+            even = even->next;
         }
-        if(even->next) {
-            even->next = NULL;
-        }
+        
         odd->next = startEven;
         return head;
     }
