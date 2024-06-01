@@ -1,15 +1,23 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        set<int> st;
+        vector<int> res(2);
+        int xr = 0;
         for(auto it: nums) {
-            if(st.find(it) != end(st)) {
-                st.erase(it);
+            xr ^= it;
+        }
+        int j = 0;
+        while((xr & 1) == 0) {
+            j++;
+            xr >>= 1;
+        }
+        for(auto it: nums) {
+            if(it & (1 << j)) {
+                res[0] ^= it;
             }else {
-                st.insert(it);
+                res[1] ^= it;
             }
         }
-        vector<int> res{*st.begin(), *st.rbegin()};
         return res;
     }
 };
