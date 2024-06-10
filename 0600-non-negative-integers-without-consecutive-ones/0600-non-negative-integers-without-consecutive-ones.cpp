@@ -12,14 +12,17 @@ public:
 
         int i = 30, sum = 0, prev_bit = 0;
         while(i >= 0) {
+            
             if((1 << i) & n) {
                 sum += dp[i];
+                
+                //we cann't continue so two consecutive ones
+                if(prev_bit) {
+                    return sum;
+                }
             }
             
-            if(prev_bit and ((1 << i) & n))
-                return sum;
-            
-            prev_bit = (1 << i) & n;
+            prev_bit = ((1 << i) & n); //update for last bit
             
             --i;
         }
