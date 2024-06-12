@@ -1,9 +1,11 @@
 #define ll long long 
+vector<int> pref(10, 0);
+vector<bool> vis(10, false);
+string s;
+
 class Solution {
 public:
-    vector<int> pref;
-    vector<bool> vis;
-    string s;
+    
     ll burn(vector<ll> &dp) {
         
         ll res = 0;
@@ -38,10 +40,9 @@ public:
     int atMostNGivenDigitSet(vector<string>& digits, int n) {
         
         s = to_string(n);
-        pref.assign(10, 0);   
+        pref.assign(10, 0);      
         vis.assign(10, 0);
 
-        
         for(auto it: digits) {
             int d = it[0] - '0';
             vis[d] = true;
