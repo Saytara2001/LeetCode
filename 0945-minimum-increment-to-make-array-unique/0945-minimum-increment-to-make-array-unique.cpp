@@ -1,23 +1,14 @@
 class Solution {
 public:
     int minIncrementForUnique(vector<int>& nums) {
-        vector<int> rem;
-        vector<bool> vis(200001);
-        for(auto it: nums) {
-            if(!vis[it]) {
-                vis[it] = true;
-            }else {
-                rem.push_back(it);
+        sort(begin(nums), end(nums));
+        int ans = 0;
+        for(int i = 1 ; i < size(nums); i++) {
+            if(nums[i] <= nums[i - 1]) {
+                ans += nums[i - 1] - nums[i] + 1;
+                nums[i] = nums[i - 1] + 1;
             }
         }
-        sort(begin(rem), end(rem));
-        int cur = 0, res = 0;
-        for(auto it: rem) {
-            cur = max(cur, it);
-            while(vis[cur]) cur++;
-            res += cur - it;
-            vis[cur] = true;
-        }
-        return res;
+        return ans;
     }
 };
