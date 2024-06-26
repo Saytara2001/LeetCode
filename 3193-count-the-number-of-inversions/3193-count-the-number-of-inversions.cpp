@@ -3,7 +3,7 @@ public:
     const int mod = 1e9 + 7;
     int numberOfPermutations(int n, vector<vector<int>>& requirements) {
         int k = 401;
-        map<int, int> mp;
+        unordered_map<int, int> mp;
         for(auto it: requirements) {
             mp[it[0] + 1] = it[1];
         }
