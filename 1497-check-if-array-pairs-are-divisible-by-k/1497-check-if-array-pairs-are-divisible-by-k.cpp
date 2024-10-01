@@ -10,16 +10,15 @@ public:
             mp[arr[i]]++;
         }
         
-        int pairs = 0;
         for(int i = 0; i < n ; i++) {
-            if(mp[arr[i]] > 0) {
-                mp[arr[i]]--;
-                int need = (((k - arr[i]) % k) + k) % k;
-                if(--mp[need] >= 0)
-                    ++pairs;
+            int need = ((k - arr[i]) % k + k) % k;
+            if(mp[arr[i]]) {
+                 mp[arr[i]]--;
+                if(--mp[need] < 0)
+                    return false;
             }
         }
         
-        return pairs == n / 2;
+        return true;
     }
 };
