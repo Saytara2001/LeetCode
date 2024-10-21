@@ -2,7 +2,7 @@ class Solution {
 public:
     int maxUnique = 0;
     string str;
-    void rec(int i, string s, map<string, int> mp) {
+    void rec(int i, string s, unordered_map<string, int> mp) {
         if(i == size(str)) {
             int add = (size(s) and mp.find(s) == end(mp));
             maxUnique = max(maxUnique, int(size(mp)) + add);
@@ -23,7 +23,7 @@ public:
     }
     int maxUniqueSplit(string s) {
         str = s;
-        map<string, int> mp;
+        unordered_map<string, int> mp;
         rec(0, "", mp);
         return maxUnique;
     }
