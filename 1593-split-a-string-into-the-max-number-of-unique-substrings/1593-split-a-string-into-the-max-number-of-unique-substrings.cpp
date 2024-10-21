@@ -11,7 +11,7 @@ public:
             
             string sub = s.substr(i, end - i);
 
-            if(!vis.count(sub)) {
+            if(vis.find(sub) == vis.end()) {
                 vis.insert(sub);
                 maxUnique = max(maxUnique, 1 + rec(end, s, vis));
                 vis.erase(sub);
