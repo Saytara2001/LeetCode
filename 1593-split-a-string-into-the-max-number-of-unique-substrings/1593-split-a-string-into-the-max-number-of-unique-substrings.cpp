@@ -15,7 +15,7 @@ public:
         s.pop_back();
         
         // split
-        if(s.size()) { // non-empty string
+        if(s.size() and mp.find(s) == end(mp)) { // non-empty string
             mp[s]++;
             rec(i + 1, str.substr(i, 1), mp);
             mp[s]--;
