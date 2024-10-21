@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int rec(int i, string& s, unordered_set<string> vis) {
+    int rec(int i, string& s, unordered_set<string>& vis) {
         
         if(i == size(s)) 
             return 0;
