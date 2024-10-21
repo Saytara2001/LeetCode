@@ -1,30 +1,27 @@
 class Solution {
 public:
-    int maxUnique = 0;
-    string str;
-    void rec(int i, string s, unordered_map<string, int> mp) {
-        if(i == size(str)) {
-            int add = (size(s) and mp.find(s) == end(mp));
-            maxUnique = max(maxUnique, int(size(mp)) + add);
-            return;
+    int rec(int i, string& s, unordered_set<string> vis) {
+        
+        if(i == size(s)) 
+            return 0;
+    
+        int maxUnique = 0;
+        
+        for(int end = i + 1; end <= s.size(); end++) {
+            
+            string sub = s.substr(i, end - i);
+
+            if(!vis.count(sub)) {
+                vis.insert(sub);
+                maxUnique = max(maxUnique, 1 + rec(end, s, vis));
+                vis.erase(sub);
+            }
         }
         
-        // continue
-        s.push_back(str[i]);
-        rec(i + 1, s, mp);
-        s.pop_back();
-        
-        // split
-        if(s.size() and mp.find(s) == end(mp)) { // non-empty string
-            mp[s]++;
-            rec(i + 1, str.substr(i, 1), mp);
-            mp[s]--;
-        }
+        return maxUnique;
     }
     int maxUniqueSplit(string s) {
-        str = s;
-        unordered_map<string, int> mp;
-        rec(0, "", mp);
-        return maxUnique;
+        unordered_set<string> vis;
+        return rec(0, s, vis);
     }
 };
