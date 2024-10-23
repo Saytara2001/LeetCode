@@ -9,7 +9,10 @@ public:
         if(~ret)
             return ret;
         
-        ret = max(rec(i + 1, sum, v), v[i] + rec(i + 1, (sum + v[i]) % 3, v));
+        ret = -1e9;
+        ret = max(ret, rec(i + 1, sum, v)); // leave
+        ret = max(ret, v[i] + rec(i + 1, (sum + v[i]) % 3, v)); // take
+        
         
         return ret;
     }
