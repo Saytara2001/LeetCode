@@ -38,10 +38,14 @@ public:
         dfs(root->right, dep + 1, sums);
     }
     TreeNode* replaceValueInTree(TreeNode* root) {
+        
         vector<int> sums(100000); // sum of each lvl in BT
+        
         calcSum(root, 0, sums);  
         dfs(root, 0, sums);
+        
         root->val = 0;
+        
         return root;
     }
 };
