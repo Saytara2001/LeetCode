@@ -1,17 +1,15 @@
 class Solution {
 public:
     int largestCombination(vector<int>& candidates) {
-        // Initialize a vector to store the count of each bit position.
-        vector<int> bitCount(24, 0);
-        for (int i = 0; i < 24; i++) {
-            for (int num : candidates) {
-                // Check if the i-th bit is set.
-                if ((num & (1 << i)) != 0) {
-                    bitCount[i]++;
+        vector<int> bit(29, 0);
+        int mx = 0;
+        for(int i = 0; i < size(candidates); i++) {
+            for(int mask = 0; mask < 29; mask++) {
+                if(candidates[i] & (1 << mask)) {
+                    mx = max(mx, ++bit[mask]);
                 }
             }
         }
-        // Return the maximum count.
-        return *max_element(bitCount.begin(), bitCount.end());
+        return mx;
     }
 };
