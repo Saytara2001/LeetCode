@@ -5,8 +5,7 @@ public:
         int n = size(nums), Mn = 1e9;
         
         long long sum = 0;
-        // sum, index
-        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq; 
+        deque<pair<long long, int>> dq; // sum, index
         
         
         for(int i = 0; i < n; i++) {
@@ -16,12 +15,17 @@ public:
             if(sum >= k)
                 Mn = min(Mn, i + 1);
             
-            while(pq.size() and sum - pq.top().first >= k) {
-                Mn = min(Mn, i - pq.top().second);
-                pq.pop();
+            // make the dq monotonic increasing
+            while(dq.size() and sum <= dq.back().first) {
+                dq.pop_back();
             }
             
-            pq.push({sum, i});
+            while(dq.size() and sum - dq.front().first >= k) {
+                Mn = min(Mn, i - dq.front().second);
+                dq.pop_front();
+            }
+            
+            dq.push_back({sum, i});
         }
         
         return Mn == 1e9 ? -1 : Mn;
