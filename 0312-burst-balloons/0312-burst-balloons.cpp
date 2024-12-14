@@ -4,8 +4,8 @@ public:
     long long dp[305][305];
     long long rec(int l, int r, vector<int>& nums) {
         
-        if(r - l == 0)  // [8] => 1 * 8 * 1
-            return nums[r];
+        if(l > r)  // [8] => 1 * 8 * 1
+            return 0;
         
         long long &ret = dp[l][r];
         if(~ret)
@@ -13,8 +13,8 @@ public:
         
         ret = 0;
         
-        for(int k = l + 1; k < r; k++) {
-            ret = max(ret, rec(l, k, nums) + rec(k, r, nums) + (nums[l] * nums[k] * nums[r]));
+        for(int k = l; k <= r; k++) {
+            ret = max(ret, rec(l, k - 1, nums) + rec(k + 1, r, nums) + (nums[l - 1] * nums[k] * nums[r + 1]));
         }
         
         return ret;
@@ -27,6 +27,6 @@ public:
         n = size(nums);
         
         memset(dp, -1, sizeof dp);
-        return rec(0, n - 1, nums);
+        return rec(1, n - 2, nums);
     }
 };
