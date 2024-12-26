@@ -1,24 +1,23 @@
 class Solution {
 public:
-    int dp[20][40005];
-    int rec(int i, int sum, int target, vector<int>& nums) {
+    int findTargetSumWays(vector<int>& nums, int target) {
         
-        if(i == size(nums)) {
-            return sum == target;
+        int n = size(nums);
+        int totalSum = accumulate(begin(nums), end(nums), 0);
+        
+        vector<vector<int>> dp(n, vector<int>(2 * totalSum + 1));
+        dp[0][nums[0] + totalSum] = 1;
+        dp[0][-nums[0] + totalSum] += 1;
+        
+        for(int i = 1; i < n; i++) {
+            for(int sum = -totalSum; sum <= totalSum; sum++) {
+                if(dp[i - 1][sum + totalSum] > 0) {
+                    dp[i][sum + nums[i] + totalSum] += dp[i - 1][sum + totalSum];
+                    dp[i][sum - nums[i] + totalSum] += dp[i - 1][sum + totalSum];
+                }
+            }
         }
         
-        int fixSum = sum < 0 ? 20000 + -sum : sum;
-        int &ret = dp[i][fixSum];
-        if(~ret)
-            return ret;
-        
-        ret = rec(i + 1, sum + nums[i], target, nums);
-        ret += rec(i + 1, sum - nums[i], target, nums);
-        
-        return ret;
-    }
-    int findTargetSumWays(vector<int>& nums, int target) {
-        memset(dp, -1, sizeof dp);
-        return rec(0, 0, target, nums);
+        return abs(target) > totalSum ? 0 : dp[n - 1][target + totalSum];
     }
 };
