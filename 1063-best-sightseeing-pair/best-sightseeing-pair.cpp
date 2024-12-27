@@ -1,15 +1,11 @@
 class Solution {
 public:
     int maxScoreSightseeingPair(vector<int>& values) {
-        multiset<int> ms;
         int n = size(values);
-        for(int i = 0; i < n ; i++) {
-            ms.insert(values[i] - i);
-        }
-        int maxScore = 0;
-        for(int i = 0; i < n - 1; i++) {
-            ms.erase(ms.find(values[i] - i));
-            maxScore = max(maxScore, values[i] + i + *ms.rbegin());
+        int maxScore = 0, bestPrev = values[0];
+        for(int i = 1; i < n; i++) {
+            maxScore = max(maxScore, bestPrev + values[i] - i);
+            bestPrev = max(bestPrev, values[i] + i);
         }
         return maxScore;
     }
