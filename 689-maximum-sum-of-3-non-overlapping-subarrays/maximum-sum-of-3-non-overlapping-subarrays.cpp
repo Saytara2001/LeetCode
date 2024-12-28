@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxSum = 0, n;
-    vector<int> best, cur;
+    vector<int> cur;
     int dp[20000][4];
     vector<int> pref;
     int rec(int i, int rem, int k, vector<int>& nums) {
@@ -26,16 +26,17 @@ public:
         
         return ret;
     }
-    void build_output(int i, int rem, int k, vector<int>& nums) {
+    vector<int> build_output(int i, int rem, int k, vector<int>& nums) {
+        
+        vector<int> best {1000000};
 
         if(!rem) {
             best = min(best, cur);
-            return;
+            return best;
         }
             
-
         if(i >= n)
-            return;
+            return {1000000};
         
         int ch1 = rec(i + 1, rem, k, nums);
         int ch2 = 0;
@@ -47,28 +48,27 @@ public:
 
         int &ret = dp[i][rem];
         if(ret == ch1) {
-            build_output(i + 1, rem, k, nums);
+            best = min(best, build_output(i + 1, rem, k, nums));
         }
         if(ret == ch2 and i + k <= n) {
             cur.push_back(i);
-            build_output(i + k, rem - 1, k, nums);
+            best = min(best, build_output(i + k, rem - 1, k, nums));
             cur.pop_back();
         }
+        return best;
     }
     vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
         
         n = size(nums);
         memset(dp, -1, sizeof dp);
         pref.resize(n + 2);
-        cur.clear();
-        best.push_back(1000000);
+
         for(int i = 0; i < n; i++) {
             pref[i + 1] = pref[i] + nums[i];
         }
 
         cout << rec(0, 3, k, nums) <<endl;
-        build_output(0, 3, k, nums);
 
-        return best;
+        return build_output(0, 3, k, nums);
     }
 };
