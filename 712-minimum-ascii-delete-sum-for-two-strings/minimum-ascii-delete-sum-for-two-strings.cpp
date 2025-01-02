@@ -19,7 +19,6 @@ public:
         if(s1[i] == s2[j]) {
             ret = min(ret, lowestSum(i + 1, j + 1, s1, s2));
         }else {
-            ret = min(ret, lowestSum(i + 1, j + 1, s1, s2) + s1[i] + s2[j]);
             ret = min(ret, lowestSum(i + 1, j, s1, s2) + s1[i]);
             ret = min(ret, lowestSum(i, j + 1, s1, s2) + s2[j]);
         }
