@@ -21,7 +21,6 @@ public:
                 int nx = x + dx[d];
                 int ny = y + dy[d];
                 if(valid(nx, ny)) {
-                    if(dis[nx][ny] != 2e9 and grid[nx][ny] == 0) continue;
                     int newCost = -cost + (grid[nx][ny] == 1);
                     if(dis[nx][ny] > newCost) {
                         dis[nx][ny] = newCost;
