@@ -12,7 +12,7 @@ public:
             even += f / 2;
             odd += f & 1;
         } 
-        if(odd > k or odd + 2 * even < k)
+        if(odd > k or size(s) < k)
             return false;
         
         return true;
