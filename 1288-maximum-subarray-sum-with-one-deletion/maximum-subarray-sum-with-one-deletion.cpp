@@ -5,19 +5,22 @@ public:
         vector<int> pref(n), suff(n);
         int maxSum = INT_MIN;
 
-        int sum = 0, minSum = 0;
+        int sum = 0;
         for(int i = 0; i < n; i++) {
             sum += arr[i];
-            pref[i] = sum - minSum;
-            minSum = min(minSum, sum);
-            maxSum = max(maxSum, pref[i]);
+            maxSum = max(maxSum, sum);
+            if(sum < 0) sum = 0;
+            pref[i] = sum;
         }
 
-        sum = 0, minSum = 0;
+        if(maxSum < 0) 
+            return maxSum;
+
+        sum = 0;
         for(int i = n - 1; i >= 0; i--) {
             sum += arr[i];
-            suff[i] = sum - minSum;
-            minSum = min(minSum, sum);
+            if(sum < 0) sum = 0;
+            suff[i] = sum;
         }
 
         
