@@ -27,10 +27,7 @@ public:
     }
     bool preprocess = false;
     int countAnagrams(string s) {
-        if(!preprocess) {
-            pre();
-            preprocess = true;
-        }
+         pre();
         long long res = 1;
         int n = size(s);
         int cnt = 0;
@@ -42,10 +39,11 @@ public:
             }else {
                 res = mul(res, fact[cnt]);
                 for(int f = 0; f < 26; f++) 
-                    if(freq[f] > 0)
+                    if(freq[f] > 0) {
                         res = mul(res, modInverse[freq[f]]);
+                        freq[f] = 0;
+                    }
                 cnt = 0;
-                freq.assign(26, 0);
             }
         }
         if(cnt > 0) {
