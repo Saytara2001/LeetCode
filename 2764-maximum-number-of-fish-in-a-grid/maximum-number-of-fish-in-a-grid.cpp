@@ -5,23 +5,16 @@ public:
         int n = size(grid), m = size(grid[0]);
         vector<vector<bool>> vis(n, vector<bool> (m));
         int fish = 0;
-        int dx[4] = {1, -1, 0, 0};
-        int dy[4] = {0, 0, -1, 1};
-        auto valid = [&](int i, int j) {
-            return (i >= 0 and i < n and j >= 0 and j < m);
-        };
         function<void(int, int)> dfs = [&](int i, int j) {
             
+            if(i < 0 or j < 0 or i >= n or j >= m) return;
+            if(vis[i][j] or grid[i][j] == 0) return;
             fish += grid[i][j];
             vis[i][j] = true;
-
-            for(int d = 0; d < 4; d++) {
-                int ni = i + dx[d];
-                int nj = j + dy[d];
-                if(valid(ni, nj) and !vis[ni][nj] and grid[ni][nj]) {
-                    dfs(ni, nj);
-                }
-            }
+            dfs(i + 1, j);
+            dfs(i - 1, j);
+            dfs(i, j + 1);
+            dfs(i, j - 1);
         };
 
         int maxFishes = 0;
@@ -30,6 +23,7 @@ public:
                 if(!vis[i][j] and grid[i][j]) {
                     fish = 0;
                     dfs(i, j);
+                    cout << endl;
                     maxFishes = max(maxFishes, fish);
                 }
             }
