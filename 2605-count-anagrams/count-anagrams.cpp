@@ -27,7 +27,10 @@ public:
     }
     bool preprocess = false;
     int countAnagrams(string s) {
-         pre();
+        if(!preprocess) {
+            pre();
+            preprocess = true;
+        }
         long long res = 1;
         int n = size(s);
         int cnt = 0;
