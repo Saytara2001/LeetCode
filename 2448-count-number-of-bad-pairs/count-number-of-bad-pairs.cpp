@@ -5,7 +5,7 @@ public:
         int n = size(nums);
         long long res = 1LL * n * (n - 1) / 2;
 
-        map<int, int> mp;
+        unordered_map<int, int> mp;
         for(int i = 0; i < n; i++) {
             res -= mp[nums[i] - (i + 1)]++;
         }
