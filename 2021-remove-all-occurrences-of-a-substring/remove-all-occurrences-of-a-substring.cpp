@@ -6,7 +6,7 @@ public:
         for(auto c: s) {
             res += c;
             int n = res.size();
-            while(n >= m and res.substr(n - m, m) == part) {
+            if(n >= m and res.substr(n - m, m) == part) {
                 for(int cnt = 0; cnt < m; cnt++) 
                     res.pop_back();
             } 
