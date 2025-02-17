@@ -11,32 +11,34 @@
  */
 class Solution {
 public:
-    enum Camera {Has_Camera, Covered, NeedToCovered};
+    // 1 => has_camera
+    // 2 => covered
+    // 3 => need camera
     int cameras = 0;
     
-    Camera dfs(TreeNode *root) {
+    int dfs(TreeNode *root) {
 
         if(!root)
-            return Camera::Covered;
+            return 2;
 
-        Camera L = dfs(root->left);
-        Camera R = dfs(root->right);
+        int L = dfs(root->left);
+        int R = dfs(root->right);
 
         // we must add camera at this node
-        if(L == Camera::NeedToCovered or R == Camera::NeedToCovered) {
+        if(L == 3 or R == 3) {
             cameras++;
-            return Camera::Has_Camera;
+            return 1;
         }
 
         // we don't need to add camera at this node
-        if(L == Camera::Has_Camera or R == Camera::Has_Camera) {
-            return Camera::Covered;
+        if(L == 1 or R == 1) {
+            return 2;
         }
 
-        return Camera::NeedToCovered;
+        return 3;
 
     }
     int minCameraCover(TreeNode* root) {
-        return dfs(root) == Camera::NeedToCovered ? ++cameras: cameras;
+        return dfs(root) == 3 ? ++cameras: cameras;
     }
 };
