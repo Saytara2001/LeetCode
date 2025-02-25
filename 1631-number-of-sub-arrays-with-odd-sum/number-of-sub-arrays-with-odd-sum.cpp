@@ -4,13 +4,13 @@ public:
     int numOfSubarrays(vector<int>& arr) {
         vector<int> v(2, 0);
         v[0] = 1;
-        int pre = 0;
+        int prev = 0;
         long long sub = 0;
         for(auto x: arr) {
-            int sum = (x + pre) & 1;
-            sub = (sub + v[sum ^ 1]) % mod;
-            v[sum]++;
-            pre = sum;
+            int pref = (x + prev) & 1;
+            sub = (sub + v[pref ^ 1]) % mod;
+            v[pref]++;
+            prev = pref;
         }
         return sub;
     }
