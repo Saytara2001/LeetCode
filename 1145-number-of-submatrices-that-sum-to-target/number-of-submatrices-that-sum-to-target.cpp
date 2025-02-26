@@ -15,7 +15,7 @@ public:
         
         for(int r2 = 1; r2 <= n; r2++) {
             for(int r1 = 0; r1 < r2; r1++) {
-                unordered_map<int, int> mp;
+                map<int, int> mp;
                 mp[0] = 1;
                 for(int c = 1; c <= m; c++) {
                     int val = pref[r2][c] - pref[r1][c];
