@@ -12,8 +12,8 @@ public:
 
         // BFS
         queue<array<int, 3>> q;
-        vector<bool> vis(idx + 5, false);
-        vector<int> cost(n, INT_MAX);
+        vector<bool> vis(idx, false);
+        vector<int> cost(n, -1);
 
         q.push({0, 0, -1});
         cost[0] = 0;
@@ -24,19 +24,15 @@ public:
             int lstColor = q.front()[2];
             q.pop();
             for(auto [child, color, idxEdge]: adj[node]) {
-                // cout << node <<" "<<child <<" "<<idxEdge<<" "<<color<<" "<<lstColor<<endl;
                 if(!vis[idxEdge] and color != lstColor) {
                     vis[idxEdge] = true;
                     q.push({child, dist + 1, color});
-                    if(dist + 1 < cost[child]) {
+                    if(cost[child] == -1) {
                         cost[child] = dist + 1;
                     }
                 }
             }
 
-        }
-        for(auto& it: cost) {
-            if(it == INT_MAX) it = -1;
         }
         return cost;
     }
