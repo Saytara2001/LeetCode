@@ -1,43 +1,48 @@
 class Solution {
 public:
-    const int mod = 1e9 + 7;
-    int dx[4] = {0, 0, 1, -1};
-    int dy[4] = {1, -1, 0, 0};
-    int add(int a, int b) {
-        return (a % mod + b % mod) % mod;
-    }
-    bool valid(int& i, int& j, int& n, int& m) {
-        return (i >= 0 and i < n and j >= 0 and j < m);
-    }
-    int countPaths(vector<vector<int>>& grid) {
 
-        int n = size(grid), m = size(grid[0]);
-        vector<vector<int>> dp(n, vector<int>(m, -1));
+        int mod = 1000000007;
+        int dr[4] = {1,0,-1,0};
+        int dc[4] = {0,1,0,-1};
 
-        function<int(int, int)> rec = [&](int i, int j) {
+    bool isValid(int i,int j,vector<vector<int>>& grid){
 
-            int &ret = dp[i][j];
-            if(~ret)
-                return ret;
+        if(i<0 || i>= grid.size() || j<0 || j>= grid[0].size())
+         return false;
 
-            ret = 0;
-            for(int d = 0; d < 4; d++) {
-                int ni = i + dx[d];
-                int nj = j + dy[d];
-                if(valid(ni, nj, n, m) and grid[i][j] < grid[ni][nj]) {
-                    ret = add(ret, rec(ni, nj) + 1);
-                }
-            }
+        return true; 
+    } 
 
-            return ret;
-        };
-        
-        int paths = n * m; // path with one length (one cell)
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                paths = add(paths, rec(i, j));
+    int dfs(int r,int c,vector<vector<int>>& grid,vector<vector<int>>& dp){
+
+        if(dp[r][c] != -1)
+         return dp[r][c];
+
+
+        int ans = 1;
+
+        for(int i=0;i<4;i++){
+
+            int nr = r + dr[i];
+            int nc = c + dc[i];
+
+            if(isValid(nr,nc,grid) && grid[nr][nc] > grid[r][c]){
+                ans = (ans%mod + dfs(nr,nc,grid,dp)%mod)%mod;
             }
         }
-        return paths;
+
+        return dp[r][c]=ans;
+    } 
+
+    int countPaths(vector<vector<int>>& grid) {
+        
+         vector<vector<int>> dp(grid.size(),vector<int>(grid[0].size(),-1));
+         long long cnt = 0;
+
+         for(int i=0;i<grid.size();i++)
+           for(int j=0;j<grid[0].size();j++)
+             cnt = (cnt%mod + dfs(i,j,grid,dp)%mod)%mod;
+
+        return (int)cnt%mod;     
     }
 };
