@@ -1,48 +1,61 @@
 class Solution {
 public:
+    int n, m;
+    const int mod = 1e9 + 7;
+    int dx[4] = {0, 0, 1, -1};
+    int dy[4] = {1, -1, 0, 0};
+    int add(int a, int b) {
+        return (a % mod + b % mod) % mod;
+    }
+    bool valid(int& i, int& j, int& n, int& m) {
+        return (i >= 0 and i < n and j >= 0 and j < m);
+    }
+    int rec(int i, int j, vector<vector<int>>& grid, vector<vector<int>>& dp) {
 
-        int mod = 1000000007;
-        int dr[4] = {1,0,-1,0};
-        int dc[4] = {0,1,0,-1};
+            int &ret = dp[i][j];
+            if(~ret)
+                return ret;
 
-    bool isValid(int i,int j,vector<vector<int>>& grid){
+            ret = 0;
+            for(int d = 0; d < 4; d++) {
+                int ni = i + dx[d];
+                int nj = j + dy[d];
+                if(valid(ni, nj, n, m) and grid[i][j] < grid[ni][nj]) {
+                    ret = add(ret, rec(ni, nj, grid, dp) + 1);
+                }
+            }
 
-        if(i<0 || i>= grid.size() || j<0 || j>= grid[0].size())
-         return false;
+            return ret;
+    };
+    int countPaths(vector<vector<int>>& grid) {
 
-        return true; 
-    } 
+        n = size(grid), m = size(grid[0]);
+        vector<vector<int>> dp(n, vector<int>(m, -1));
 
-    int dfs(int r,int c,vector<vector<int>>& grid,vector<vector<int>>& dp){
+        // function<int(int, int)> rec = [&](int i, int j) {
 
-        if(dp[r][c] != -1)
-         return dp[r][c];
+        //     int &ret = dp[i][j];
+        //     if(~ret)
+        //         return ret;
 
+        //     ret = 0;
+        //     for(int d = 0; d < 4; d++) {
+        //         int ni = i + dx[d];
+        //         int nj = j + dy[d];
+        //         if(valid(ni, nj, n, m) and grid[i][j] < grid[ni][nj]) {
+        //             ret = add(ret, rec(ni, nj) + 1);
+        //         }
+        //     }
 
-        int ans = 1;
-
-        for(int i=0;i<4;i++){
-
-            int nr = r + dr[i];
-            int nc = c + dc[i];
-
-            if(isValid(nr,nc,grid) && grid[nr][nc] > grid[r][c]){
-                ans = (ans%mod + dfs(nr,nc,grid,dp)%mod)%mod;
+        //     return ret;
+        // };
+        
+        int paths = n * m; // path with one length (one cell)
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                paths = add(paths, rec(i, j, grid, dp));
             }
         }
-
-        return dp[r][c]=ans;
-    } 
-
-    int countPaths(vector<vector<int>>& grid) {
-        
-         vector<vector<int>> dp(grid.size(),vector<int>(grid[0].size(),-1));
-         long long cnt = 0;
-
-         for(int i=0;i<grid.size();i++)
-           for(int j=0;j<grid[0].size();j++)
-             cnt = (cnt%mod + dfs(i,j,grid,dp)%mod)%mod;
-
-        return (int)cnt%mod;     
+        return paths;
     }
 };
