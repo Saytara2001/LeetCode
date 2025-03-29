@@ -34,23 +34,14 @@ public:
         for (int i = 0; i < n; ++i) {
             // make the score monotonicly decreasing
             // to get the nearest greater than or equal to score
-            while (stk.size() and score[stk.top()] < score[i])
+            while (stk.size() and score[stk.top()] < score[i]) {
+
+                right[stk.top()] = i;
                 stk.pop();
+            }
 
             if (stk.size())
                 left[i] = stk.top();
-
-            stk.push(i);
-        }
-        while (stk.size()) stk.pop();
-        for (int i = n - 1; i >= 0; --i) {
-            // make the score monotonicly decreasing
-            // to get the nearest greater than to score
-            while (stk.size() and score[stk.top()] <= score[i])
-                stk.pop();
-
-            if (stk.size())
-                right[i] = stk.top();
 
             stk.push(i);
         }
