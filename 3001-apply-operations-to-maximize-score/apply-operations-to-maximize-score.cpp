@@ -25,17 +25,16 @@ public:
     }
     int maximumScore(vector<int>& v, int k) {
         int n = size(v), mod = 1e9 + 7;
-        unordered_map<int, int> score;
+        vector<int> score(n);
         for (int i = 0; i < n; ++i) {
-            if (!score.count(v[i]))
-                score[v[i]] = countUniquePrimeFactors(v[i]);
+            score[i] = countUniquePrimeFactors(v[i]);
         }
         vector<int> left(n, -1), right(n, n);
         stack<int> stk;
         for (int i = 0; i < n; ++i) {
             // make the score monotonicly decreasing
             // to get the nearest greater than or equal to score
-            while (stk.size() and score[v[stk.top()]] < score[v[i]])
+            while (stk.size() and score[stk.top()] < score[i])
                 stk.pop();
 
             if (stk.size())
@@ -47,7 +46,7 @@ public:
         for (int i = n - 1; i >= 0; --i) {
             // make the score monotonicly decreasing
             // to get the nearest greater than to score
-            while (stk.size() and score[v[stk.top()]] <= score[v[i]])
+            while (stk.size() and score[stk.top()] <= score[i])
                 stk.pop();
 
             if (stk.size())
