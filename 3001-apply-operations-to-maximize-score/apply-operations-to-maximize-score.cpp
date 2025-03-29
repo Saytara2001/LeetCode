@@ -25,7 +25,7 @@ public:
     }
     int maximumScore(vector<int>& v, int k) {
         int n = size(v), mod = 1e9 + 7;
-        map<int, int> score;
+        unordered_map<int, int> score;
         for (int i = 0; i < n; ++i) {
             if (!score.count(v[i]))
                 score[v[i]] = countUniquePrimeFactors(v[i]);
