@@ -2,21 +2,23 @@ class Solution {
 public:
     long long putMarbles(vector<int>& weights, int k) {
 
-        vector<int> pairs;
         int n = size(weights);
-        
-        for(int i = 0; i < n - 1; i++) {
-            pairs.push_back(weights[i] + weights[i + 1]);
+        vector<int> score; // partitions of every two consequtive bags
+
+        for(int i = 1; i < n; i++) {
+            score.push_back(weights[i] + weights[i - 1]);
         }
 
-        sort(begin(pairs), end(pairs));
-        long long maxScore = weights.front() + weights.back();
-        long long minScore = weights.front() + weights.back();
-        
+        sort(begin(score), end(score));
+        long long maxScore = weights[0] + weights[n - 1];
+        long long minScore = maxScore;
+
+        int sz = size(score);
         for(int i = 0; i < k - 1; i++) {
-            minScore += pairs[i];
-            maxScore += pairs[n - i - 2];
+            minScore += score[i];
+            maxScore += score[sz - i - 1];
         }
+
         return maxScore - minScore;
     }
 };
