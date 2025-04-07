@@ -11,7 +11,7 @@ public:
 
         dp[tot / 2] = 1;
         for(int i = n - 1; i >= 0; i--) {
-            for(int sum = 0; sum <= tot; sum++) {
+            for(int sum = 0; sum <= tot / 2; sum++) {
                 int &ret = dp[sum];
                 ret |= dp[sum];
                 ret |= dp[sum + nums[i]];
