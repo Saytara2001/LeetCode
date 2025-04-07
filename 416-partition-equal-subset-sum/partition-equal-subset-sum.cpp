@@ -1,25 +1,22 @@
 class Solution {
 public:
-    int dp[200][20001];
-    int tot = 0;
-    int rec(int i, int sum, vector<int>& nums) {
-
-        if(i == size(nums)) 
-            return tot - 2 * sum == 0;
-
-        int &ret = dp[i][sum];
-        if(~ret)
-            return ret;
-
-        ret = 0;
-        ret |= rec(i + 1, sum, nums);
-        ret |= rec(i + 1, sum + nums[i], nums);
-
-        return ret;
-    }
     bool canPartition(vector<int>& nums) {
-        memset(dp, -1, sizeof dp);
-        tot = accumulate(begin(nums), end(nums), 0);
-        return rec(0, 0, nums);
+        
+        int tot = accumulate(begin(nums), end(nums), 0);
+        if(tot & 1)
+            return false;
+
+        int n = size(nums);
+        vector<vector<int>> dp(n + 1, vector<int>(2 * tot + 1));
+
+        dp[n][tot / 2] = 1;
+        for(int i = n - 1; i >= 0; i--) {
+            for(int sum = 0; sum <= tot; sum++) {
+                int &ret = dp[i][sum];
+                ret |= dp[i + 1][sum];
+                ret |= dp[i + 1][sum + nums[i]];
+            }
+        }
+        return dp[0][0];
     }
 };
