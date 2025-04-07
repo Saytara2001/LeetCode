@@ -20,7 +20,6 @@ public:
     bool canPartition(vector<int>& nums) {
         memset(dp, -1, sizeof dp);
         tot = accumulate(begin(nums), end(nums), 0);
-        cout << tot << endl;
         return rec(0, 0, nums);
     }
 };
