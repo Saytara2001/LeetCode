@@ -14,6 +14,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Math
 |  |
 | ------- |
+| [2050-count-good-numbers](https://github.com/Saytara2001/LeetCode/tree/master/2050-count-good-numbers) |
 | [3001-apply-operations-to-maximize-score](https://github.com/Saytara2001/LeetCode/tree/master/3001-apply-operations-to-maximize-score) |
 ## Stack
 |  |
@@ -50,4 +51,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [3621-minimum-operations-to-make-array-values-equal-to-k](https://github.com/Saytara2001/LeetCode/tree/master/3621-minimum-operations-to-make-array-values-equal-to-k) |
 | [3656-minimum-number-of-operations-to-make-elements-in-array-distinct](https://github.com/Saytara2001/LeetCode/tree/master/3656-minimum-number-of-operations-to-make-elements-in-array-distinct) |
+## Recursion
+|  |
+| ------- |
+| [2050-count-good-numbers](https://github.com/Saytara2001/LeetCode/tree/master/2050-count-good-numbers) |
 <!---LeetCode Topics End-->
