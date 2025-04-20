@@ -7,11 +7,7 @@ public:
         }
         int n = 0;
         for(auto [x, freq]: mp) {
-            if(x == 0) {
-                n += freq;
-                continue;
-            }
-             // freq / x + 1 with ceiling
+            // freq / x + 1 with ceiling
             int calc = (freq + x) / (x + 1);
             n += max(calc * (x + 1), x + 1);
         }
