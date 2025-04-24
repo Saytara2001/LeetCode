@@ -18,17 +18,15 @@ public:
                 if(!freq[nums[r]]) {
                     ++dis;
                 }
-                freq[nums[r]]++;
-                r++;
+                freq[nums[r++]]++;
             }
             // check validality
             if(dis == uni) 
                 cnt += n - r + 1;
             // move l  
-            if(--freq[nums[l]] == 0) {
+            if(--freq[nums[l++]] == 0) {
                 --dis;
             }
-            ++l;
         }
         return cnt;
     }
