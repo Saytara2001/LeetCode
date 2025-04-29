@@ -10,6 +10,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [2280-count-good-triplets-in-an-array](https://github.com/Saytara2001/LeetCode/tree/master/2280-count-good-triplets-in-an-array) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
 | [3001-apply-operations-to-maximize-score](https://github.com/Saytara2001/LeetCode/tree/master/3001-apply-operations-to-maximize-score) |
+| [3213-count-subarrays-where-max-element-appears-at-least-k-times](https://github.com/Saytara2001/LeetCode/tree/master/3213-count-subarrays-where-max-element-appears-at-least-k-times) |
 | [3621-minimum-operations-to-make-array-values-equal-to-k](https://github.com/Saytara2001/LeetCode/tree/master/3621-minimum-operations-to-make-array-values-equal-to-k) |
 | [3656-minimum-number-of-operations-to-make-elements-in-array-distinct](https://github.com/Saytara2001/LeetCode/tree/master/3656-minimum-number-of-operations-to-make-elements-in-array-distinct) |
 ## Math
@@ -80,4 +81,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [2280-count-good-triplets-in-an-array](https://github.com/Saytara2001/LeetCode/tree/master/2280-count-good-triplets-in-an-array) |
+## Sliding Window
+|  |
+| ------- |
+| [3213-count-subarrays-where-max-element-appears-at-least-k-times](https://github.com/Saytara2001/LeetCode/tree/master/3213-count-subarrays-where-max-element-appears-at-least-k-times) |
 <!---LeetCode Topics End-->
