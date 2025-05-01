@@ -6,6 +6,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Array
 |  |
 | ------- |
+| [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2262-solving-questions-with-brainpower](https://github.com/Saytara2001/LeetCode/tree/master/2262-solving-questions-with-brainpower) |
 | [2280-count-good-triplets-in-an-array](https://github.com/Saytara2001/LeetCode/tree/master/2280-count-good-triplets-in-an-array) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
@@ -25,11 +26,13 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Greedy
 |  |
 | ------- |
+| [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
 | [3001-apply-operations-to-maximize-score](https://github.com/Saytara2001/LeetCode/tree/master/3001-apply-operations-to-maximize-score) |
 ## Sorting
 |  |
 | ------- |
+| [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
 | [3001-apply-operations-to-maximize-score](https://github.com/Saytara2001/LeetCode/tree/master/3001-apply-operations-to-maximize-score) |
 ## Monotonic Stack
@@ -60,6 +63,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Binary Search
 |  |
 | ------- |
+| [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2280-count-good-triplets-in-an-array](https://github.com/Saytara2001/LeetCode/tree/master/2280-count-good-triplets-in-an-array) |
 ## Divide and Conquer
 |  |
@@ -85,4 +89,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [3213-count-subarrays-where-max-element-appears-at-least-k-times](https://github.com/Saytara2001/LeetCode/tree/master/3213-count-subarrays-where-max-element-appears-at-least-k-times) |
+## Queue
+|  |
+| ------- |
+| [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
+## Monotonic Queue
+|  |
+| ------- |
+| [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 <!---LeetCode Topics End-->
