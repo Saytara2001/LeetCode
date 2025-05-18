@@ -53,6 +53,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0806-domino-and-tromino-tiling](https://github.com/Saytara2001/LeetCode/tree/master/0806-domino-and-tromino-tiling) |
+| [2061-painting-a-grid-with-three-different-colors](https://github.com/Saytara2001/LeetCode/tree/master/2061-painting-a-grid-with-three-different-colors) |
 | [2262-solving-questions-with-brainpower](https://github.com/Saytara2001/LeetCode/tree/master/2262-solving-questions-with-brainpower) |
 | [3629-total-characters-in-string-after-transformations-i](https://github.com/Saytara2001/LeetCode/tree/master/3629-total-characters-in-string-after-transformations-i) |
 | [3630-total-characters-in-string-after-transformations-ii](https://github.com/Saytara2001/LeetCode/tree/master/3630-total-characters-in-string-after-transformations-ii) |
