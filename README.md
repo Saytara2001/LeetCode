@@ -122,4 +122,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [3629-total-characters-in-string-after-transformations-i](https://github.com/Saytara2001/LeetCode/tree/master/3629-total-characters-in-string-after-transformations-i) |
 | [3630-total-characters-in-string-after-transformations-ii](https://github.com/Saytara2001/LeetCode/tree/master/3630-total-characters-in-string-after-transformations-ii) |
+## Depth-First Search
+|  |
+| ------- |
+| [0386-lexicographical-numbers](https://github.com/Saytara2001/LeetCode/tree/master/0386-lexicographical-numbers) |
+## Trie
+|  |
+| ------- |
+| [0386-lexicographical-numbers](https://github.com/Saytara2001/LeetCode/tree/master/0386-lexicographical-numbers) |
 <!---LeetCode Topics End-->
