@@ -7,6 +7,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0135-candy](https://github.com/Saytara2001/LeetCode/tree/master/0135-candy) |
+| [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
 | [1424-maximum-candies-you-can-get-from-boxes](https://github.com/Saytara2001/LeetCode/tree/master/1424-maximum-candies-you-can-get-from-boxes) |
 | [2144-maximum-difference-between-increasing-elements](https://github.com/Saytara2001/LeetCode/tree/master/2144-maximum-difference-between-increasing-elements) |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
@@ -45,6 +46,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Sorting
 |  |
 | ------- |
+| [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
 | [3001-apply-operations-to-maximize-score](https://github.com/Saytara2001/LeetCode/tree/master/3001-apply-operations-to-maximize-score) |
@@ -72,6 +74,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Hash Table
 |  |
 | ------- |
+| [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
 | [3445-lexicographically-minimum-string-after-removing-stars](https://github.com/Saytara2001/LeetCode/tree/master/3445-lexicographically-minimum-string-after-removing-stars) |
 | [3621-minimum-operations-to-make-array-values-equal-to-k](https://github.com/Saytara2001/LeetCode/tree/master/3621-minimum-operations-to-make-array-values-equal-to-k) |
 | [3629-total-characters-in-string-after-transformations-i](https://github.com/Saytara2001/LeetCode/tree/master/3629-total-characters-in-string-after-transformations-i) |
@@ -109,6 +112,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Sliding Window
 |  |
 | ------- |
+| [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
 | [3213-count-subarrays-where-max-element-appears-at-least-k-times](https://github.com/Saytara2001/LeetCode/tree/master/3213-count-subarrays-where-max-element-appears-at-least-k-times) |
 ## Queue
 |  |
@@ -128,6 +132,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Counting
 |  |
 | ------- |
+| [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
 | [3629-total-characters-in-string-after-transformations-i](https://github.com/Saytara2001/LeetCode/tree/master/3629-total-characters-in-string-after-transformations-i) |
 | [3630-total-characters-in-string-after-transformations-ii](https://github.com/Saytara2001/LeetCode/tree/master/3630-total-characters-in-string-after-transformations-ii) |
 ## Depth-First Search
