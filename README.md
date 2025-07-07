@@ -9,6 +9,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0135-candy](https://github.com/Saytara2001/LeetCode/tree/master/0135-candy) |
 | [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
 | [1424-maximum-candies-you-can-get-from-boxes](https://github.com/Saytara2001/LeetCode/tree/master/1424-maximum-candies-you-can-get-from-boxes) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Saytara2001/LeetCode/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 | [1995-finding-pairs-with-a-certain-sum](https://github.com/Saytara2001/LeetCode/tree/master/1995-finding-pairs-with-a-certain-sum) |
 | [2144-maximum-difference-between-increasing-elements](https://github.com/Saytara2001/LeetCode/tree/master/2144-maximum-difference-between-increasing-elements) |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
@@ -38,6 +39,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0135-candy](https://github.com/Saytara2001/LeetCode/tree/master/0135-candy) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Saytara2001/LeetCode/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 | [1529-max-difference-you-can-get-from-changing-an-integer](https://github.com/Saytara2001/LeetCode/tree/master/1529-max-difference-you-can-get-from-changing-an-integer) |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
@@ -48,6 +50,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0594-longest-harmonious-subsequence](https://github.com/Saytara2001/LeetCode/tree/master/0594-longest-harmonious-subsequence) |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Saytara2001/LeetCode/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Saytara2001/LeetCode/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
 | [3001-apply-operations-to-maximize-score](https://github.com/Saytara2001/LeetCode/tree/master/3001-apply-operations-to-maximize-score) |
@@ -62,6 +65,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Heap (Priority Queue)
 |  |
 | ------- |
+| [1478-maximum-number-of-events-that-can-be-attended](https://github.com/Saytara2001/LeetCode/tree/master/1478-maximum-number-of-events-that-can-be-attended) |
 | [2681-put-marbles-in-bags](https://github.com/Saytara2001/LeetCode/tree/master/2681-put-marbles-in-bags) |
 | [3445-lexicographically-minimum-string-after-removing-stars](https://github.com/Saytara2001/LeetCode/tree/master/3445-lexicographically-minimum-string-after-removing-stars) |
 ## Dynamic Programming
