@@ -16,16 +16,18 @@ public:
         return ret;
     }
     int greater(vector<vector<int>> &events, int target) {
-        int left = 0, right = events.size();
-        while (left < right) {
+        int left = 0, right = events.size() - 1;
+        int ans = events.size();
+        while (left <= right) {
             int mid = (left + right) / 2;
             if (events[mid][0] <= target) {
                 left = mid + 1;
             } else {
-                right = mid;
+                ans = mid;
+                right = mid - 1;
             }
         }
-        return left;
+        return ans;
     }
     int maxValue(vector<vector<int>> &events, int k) {
         int n = events.size();
