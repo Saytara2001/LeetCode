@@ -54,19 +54,15 @@ struct segtree {
 
 int MAX = 1e7 + 1;
 segtree sg;
-bool FirstCase = true;
 
 class Solution {
 public:
     vector<int> longestObstacleCourseAtEachPosition(vector<int> &obstacles) {
-        if (FirstCase) {
-            sg.init(MAX);
-            FirstCase = false;
-        }
+        sg.init(MAX);
         int n = obstacles.size();
         vector<int> res(n);
         for (int i = 0; i < n; ++i) {
-            int mx = max(sg.query(0, obstacles[i] + 1) + 1, 1);
+            int mx = sg.query(0, obstacles[i] + 1) + 1;
             sg.set(obstacles[i], mx);
             res[i] = mx;
         }
