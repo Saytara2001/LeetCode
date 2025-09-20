@@ -50,7 +50,6 @@ public:
 
         if (idx[dest].size() == 0)
             return 0;
-        cout << idx[dest].size() << endl;
         int r = idx[dest].order_of_key(endTime + 1);
         int l = idx[dest].order_of_key(startTime);
     
