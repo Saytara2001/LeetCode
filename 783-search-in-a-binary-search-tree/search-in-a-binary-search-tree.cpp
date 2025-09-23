@@ -11,19 +11,18 @@
  */
 class Solution {
 public:
-    TreeNode* res;
-    void dfs(TreeNode *cur, int val) {
+    void dfs(TreeNode *cur, int val, TreeNode *&res) {
         if(cur == NULL) return;
         if(cur->val == val) {
             res = cur;
             return;
         }
-        dfs(cur->left, val);
-        dfs(cur->right, val);
+        dfs(cur->left, val, res);
+        dfs(cur->right, val, res);
     }
     TreeNode* searchBST(TreeNode* root, int val) {
-        res = NULL;
-        dfs(root, val);
+        TreeNode *res = NULL;
+        dfs(root, val, res);
         return res;
     }
 };
