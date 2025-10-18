@@ -1,60 +1,58 @@
+#define popcount __builtin_popcount
 class Solution {
 public:
     int maxPartitionsAfterOperations(string s, int k) {
-        int n = s.length();
-        vector<vector<int>> left(n, vector<int>(3)), right(n, vector<int>(3));
-        int num = 0, mask = 0, count = 0;
-        for (int i = 0; i < n - 1; i++) {
-            int binary = 1 << (s[i] - 'a');
-            if (!(mask & binary)) {
-                count++;
-                if (count <= k) {
+        int n = s.size();
+        vector<vector<int> > left(n, vector<int>(2));
+        vector<vector<int> > right(n, vector<int>(2));
+        int uni = 0, splits = 0, mask = 0;
+        for (int i = 0; i < n - 1; ++i) {
+            int c = s[i] - 'a';
+            int binary = (1 << c);
+            if (!(binary & mask)) {
+                ++uni;
+                if (uni <= k) {
                     mask |= binary;
                 } else {
-                    num++;
+                    ++splits;
                     mask = binary;
-                    count = 1;
+                    uni = 1;
                 }
             }
-            left[i + 1][0] = num;
-            left[i + 1][1] = mask;
-            left[i + 1][2] = count;
+            left[i + 1][0] = splits; // how many splits are left me
+            left[i + 1][1] = mask; // mask of last split
         }
-
-        num = 0, mask = 0, count = 0;
-        for (int i = n - 1; i > 0; i--) {
-            int binary = 1 << (s[i] - 'a');
-            if (!(mask & binary)) {
-                count++;
-                if (count <= k) {
+        splits = 0, mask = 0, uni = 0;
+        for (int i = n - 1; i > 0; --i) {
+            int c = s[i] - 'a';
+            int binary = (1 << c);
+            if (!(binary & mask)) {
+                ++uni;
+                if (uni <= k) {
                     mask |= binary;
                 } else {
-                    num++;
+                    ++splits;
                     mask = binary;
-                    count = 1;
+                    uni = 1;
                 }
             }
-            right[i - 1][0] = num;
+            right[i - 1][0] = splits;
             right[i - 1][1] = mask;
-            right[i - 1][2] = count;
         }
-
-        int Max = 0;
-        for (int i = 0; i < n; i++) {
+        int maxPartitions = 0;
+        for (int i = 0; i < n; ++i) {
             int seg = left[i][0] + right[i][0] + 2;
-            int totMask = left[i][1] | right[i][1];
-            int totCount = 0;
-            while (totMask) {
-                totMask = totMask & (totMask - 1);
-                totCount++;
-            }
-            if (left[i][2] == k && right[i][2] == k && totCount < 26) {
-                seg++;
-            } else if (min(totCount + 1, 26) <= k) {
-                seg--;
-            }
-            Max = max(Max, seg);
+            int mask = left[i][1] | right[i][1];
+            int uni = popcount(mask);
+            int leftUni = popcount(left[i][1]);
+            int rightUni = popcount(right[i][1]);
+            if (leftUni == k and rightUni == k and uni < 26) {
+                ++seg;
+            } else if (min(uni + 1, 26) <= k) {
+                --seg;
+            } 
+            maxPartitions = max(maxPartitions, seg);
         }
-        return Max;
+        return maxPartitions;
     }
 };
