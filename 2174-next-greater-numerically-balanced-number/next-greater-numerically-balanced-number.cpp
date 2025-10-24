@@ -3,7 +3,7 @@ public:
     // 1 22 333
     int ans = 1e9;
     void rec(int x, int n, vector<int> &cur) {
-        if (x == 10) {
+        if (x == 8) {
             if (cur.size() > 7) return;
             // get all permutations
             vector<int> gen = cur;
@@ -13,7 +13,6 @@ public:
                     num = num * 10 + d;
                 }
                 if (num > n) ans = min(ans, num);
-                // all.push_back(num);
             } while (next_permutation(begin(gen), end(gen)));
             return;
         }
