@@ -8,7 +8,7 @@ public:
     }
     
     bool transfer(int account1, int account2, long long money) {
-        if(account1 < 1 or account2 < 1 or account1 > n or account2 > n) 
+        if(account1 > n or account2 > n) 
             return false;
         if(bal[account1 - 1] < money) return false;
         bal[account1 - 1] -= money;
@@ -17,14 +17,14 @@ public:
     }
     
     bool deposit(int account, long long money) {
-        if(account < 1 or account > n) 
+        if(account > n) 
             return false;
         bal[account - 1] += money;
         return true;
     }
     
     bool withdraw(int account, long long money) {
-        if(account < 1 or account > n or bal[account - 1] < money) 
+        if(account > n or bal[account - 1] < money) 
             return false;
         bal[account - 1] -= money;
         return true;
