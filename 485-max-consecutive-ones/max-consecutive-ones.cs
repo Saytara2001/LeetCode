@@ -1,32 +1,17 @@
 public class Solution {
     public int FindMaxConsecutiveOnes(int[] nums) {
         int maxOnes = 0;
-         var dic = new Dictionary<int, List<int>>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if(nums[i] != 1) continue;
-                if (!dic.ContainsKey(nums[i]))
-                {
-                    dic.Add(nums[i], new List<int> { i });
-                }
-                else
-                {
-                    var value = dic[nums[i]];
-                    if (i - value.Last() == 1)
-                    {
-                        value.Add(i);
-                        dic[nums[i]] = value;
-                    }
-                    else
-                    {
-                        maxOnes = Math.Max(maxOnes, dic[nums[i]].Count);
-                        dic[nums[i]] = new List<int>() {i};
-
-                    }
-                }
+        int n = nums.Length;
+        for(int i = 0; i < n; i++) {
+            if(nums[i] != 1) continue;
+            int cur = i, cnt = 0;
+            while(cur < n && nums[i] == nums[cur]) {
+                ++cur;
+                ++cnt;
             }
-            if (dic.ContainsKey(1))
-                maxOnes = Math.Max(maxOnes, dic[1].Count);
-            return maxOnes;
+            i = cur;
+            maxOnes = Math.Max(maxOnes, cnt);
+        }
+        return maxOnes;
     }
 }
