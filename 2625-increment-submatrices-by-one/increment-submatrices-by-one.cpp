@@ -15,12 +15,10 @@ public:
         }
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                cout << pref[i][j] <<" ";
                 pref[i][j] += i > 0 ? pref[i - 1][j] : 0;
                 pref[i][j] += j > 0 ? pref[i][j - 1] : 0;
                 pref[i][j] -= (i > 0 and j > 0 ? pref[i - 1][j - 1] : 0);
             }
-            cout << endl;
         }
         return pref;
     }
