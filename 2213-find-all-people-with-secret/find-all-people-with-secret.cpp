@@ -54,9 +54,6 @@ class Solution {
 public:
     vector<int> findAllPeople(int n, vector<vector<int>>& meetings,
                               int firstPerson) {
-        // Sort meetings in increasing order of time
-        sort(meetings.begin(), meetings.end(),
-             [](auto& a, auto& b) { return a[2] < b[2]; });
 
         // Group Meetings in increasing order of time
         map<int, vector<pair<int, int>>> sameTimeMeetings;
