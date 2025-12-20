@@ -1,96 +1,85 @@
-class UnionFind {
-private:
-    vector<int> parent;
-    vector<int> rank;
+struct DSU {
+    vector<int> parent, sz;
 
-public:
-    UnionFind(int n) {
-        // Initialize parent and rank arrays
+    DSU(int n) {
         parent.resize(n);
-        rank.resize(n);
-        for (int i = 0; i < n; ++i) {
+        sz.resize(n);
+        for (int i = 0; i < n; i++) {
             parent[i] = i;
+            sz[i] = 1;
         }
     }
 
-    int find(int x) {
-        // Find parent of node x. Use Path Compression
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]);
+    int FindParent(int i) {
+        if (parent[i] == i)
+            return i;
+        return parent[i] = FindParent(parent[i]);
+    }
+
+    bool IsSameSet(int x, int y) {
+        x = FindParent(x);
+        y = FindParent(y);
+        return (x == y);
+    }
+
+    int Connect(int x, int y) {
+        x = FindParent(x);
+        y = FindParent(y);
+        if (x == y)
+            return 0;
+        if (x > y) {
+            swap(x, y);
         }
-        return parent[x];
+        parent[y] = x;
+        sz[x] += sz[y];
+        return 1;
     }
 
-    void unite(int x, int y) {
-        // Unite two nodes x and y, if they are not already united
-        int px = find(x);
-        int py = find(y);
-        if (px != py) {
-            // Union by Rank Heuristic
-            if (rank[px] > rank[py]) {
-                parent[py] = px;
-            } else if (rank[px] < rank[py]) {
-                parent[px] = py;
-            } else {
-                parent[py] = px;
-                rank[px] += 1;
-            }
-        }
+    int Getsize(int x) {
+        x = FindParent(x);
+        return sz[x];
     }
 
-    bool connected(int x, int y) {
-        // Check if two nodes x and y are connected or not
-        return find(x) == find(y);
-    }
-
-    void reset(int x) {
-        // Reset the initial properties of node x
+    void Reset(int x) {
         parent[x] = x;
-        rank[x] = 0;
+        sz[x] = 1;
     }
 };
 
 class Solution {
 public:
-    vector<int> findAllPeople(int n, vector<vector<int>>& meetings,
-                              int firstPerson) {
+    vector<int> findAllPeople(int n, vector<vector<int> > &meetings, int firstPerson) {
 
-        // Group Meetings in increasing order of time
         map<int, vector<pair<int, int>>> sameTimeMeetings;
         for (auto& meeting : meetings) {
             int x = meeting[0], y = meeting[1], t = meeting[2];
             sameTimeMeetings[t].emplace_back(x, y);
         }
 
-        // Create graph
-        UnionFind graph(n);
-        graph.unite(firstPerson, 0);
-
-        // Process in increasing order of time
+        DSU dsu = DSU(n);
+        dsu.Connect(0, firstPerson);
         for (auto& [t, meetings] : sameTimeMeetings) {
             // Unite two persons taking part in a meeting
             for (auto& [x, y] : meetings) {
-                graph.unite(x, y);
+                dsu.Connect(x, y);
             }
 
             // If any one knows the secret, both will be connected to 0.
             // If no one knows the secret, then reset.
             for (auto& [x, y] : meetings) {
-                if (!graph.connected(x, 0)) {
+                if (!dsu.IsSameSet(x, 0)) {
                     // No need to check for y since x and y were united
-                    graph.reset(x);
-                    graph.reset(y);
+                    dsu.Reset(x);
+                    dsu.Reset(y);
                 }
             }
         }
-
-        // Al those who are connected to 0 will know the secret
-        vector<int> ans;
+        vector<int> res;
         for (int i = 0; i < n; ++i) {
-            if (graph.connected(i, 0)) {
-                ans.push_back(i);
+            if (dsu.FindParent(i) == 0) {
+                res.push_back(i);
             }
         }
-        return ans;
+        return res;
     }
 };
