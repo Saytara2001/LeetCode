@@ -1,19 +1,19 @@
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
-        string gen = "";
         int n = s.size();
-        set<string> all;
-        for (int i = 0; i < n; i++) {
-            gen += s[i];
-
-            if (gen.size() > k)
-                gen.erase(gen.begin());
-
-            if (gen.size() == k) {
-                all.insert(gen);
+        bitset<1048576> vis;
+        int mask = (1 << k) - 1;
+        int need = 1 << k;
+        int hash = 0;
+        for(int i =0; i < n; i++) {
+            hash = ((hash << 1) & mask) | (s[i] & 1);
+            if(i >= k - 1 and !vis[hash]) {
+                vis[hash] = 1;
+                --need;
+                if(need == 0) return true;
             }
         }
-        return all.size() == (1 << k);
+        return false;
     }
 };
