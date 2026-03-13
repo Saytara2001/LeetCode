@@ -12,7 +12,8 @@ public:
             }
             return cur <= 0;
         };
-        long long l = 1, r = 1e18;
+        int mx = *max_element(begin(workerTimes), end(workerTimes));
+        long long l = 1, r = 1LL * mountainHeight * mountainHeight * mx;
         while (l < r) {
             long long mid = l + (r - l) / 2;
             if (valid(mid)) {
