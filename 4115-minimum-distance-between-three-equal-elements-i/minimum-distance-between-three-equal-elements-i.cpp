@@ -12,7 +12,8 @@ public:
                 int ii = pos[i][j];
                 int jj = pos[i][j + 1];
                 int kk = pos[i][j + 2];
-                int dis = abs(ii - jj) + abs(jj - kk) + abs(kk - ii);
+                // int dis = abs(ii - jj) + abs(jj - kk) + abs(kk - ii);
+                int dis = 2 * kk - 2 * ii;
                 ans = min(ans, dis);
             }
         }
